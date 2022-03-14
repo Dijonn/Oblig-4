@@ -1,7 +1,23 @@
+import java.util.Iterator;
+
 abstract class Lenkeliste <T> implements Liste<T> {
 
     public  Node forste;
 
+
+    class LenkelisteIterator implements Iterator<T>{
+        Node node = forste;
+        public boolean hasNext(){
+            return node.neste != null;
+        }
+        public T next(){
+            if(node.neste != null){
+                forste = node.neste;
+                return node.neste.hentData();
+            }
+            return null;
+        }
+    }
     public class Node{
 
         Node neste = null;
