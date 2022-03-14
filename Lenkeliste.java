@@ -4,6 +4,10 @@ abstract class Lenkeliste <T> implements Liste<T> {
 
     public  Node forste;
 
+    public  Iterator<T> Iterator(){
+        LenkelisteIterator nyListe = new LenkelisteIterator();
+        return nyListe; 
+    }
 
     class LenkelisteIterator implements Iterator<T>{
         Node node = forste;
