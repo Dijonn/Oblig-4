@@ -9,10 +9,4 @@ class Stabel<T> extends Lenkeliste<T> {
         }
         forste = ny;
     }
-
-    @Override
-    public java.util.Iterator<T> iterator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

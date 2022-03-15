@@ -1,4 +1,4 @@
-import java.util.Iterator;
+
 
 public class IndeksertListe<T> extends Lenkeliste<T> {
 
@@ -101,12 +101,6 @@ public class IndeksertListe<T> extends Lenkeliste<T> {
             
             tmp = tmp.neste;
         }
-        return null;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        // TODO Auto-generated method stub
         return null;
     }
 }
