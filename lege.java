@@ -1,3 +1,4 @@
+//Klasse lege som sammenligner og holder data om leger
 
 class Lege implements Comparable<Lege>{
     String navn;
@@ -16,3 +17,5 @@ class Lege implements Comparable<Lege>{
         return x.hentNavn().compareTo(this.navn);
     }
 }
+
+
