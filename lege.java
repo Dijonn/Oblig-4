@@ -1,5 +1,6 @@
 //Klasse lege som sammenligner og holder data om leger
 
+
 class lege implements Comparable<lege> {
     String navn;
     lege(String navn) {
