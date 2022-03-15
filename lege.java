@@ -16,6 +16,14 @@ class lege implements Comparable<lege>{
     public int compareTo(lege x){
         return x.hentNavn().compareTo(this.navn);
     }
+
+    IndeksertListe<Resept> utskrevneResepter = new IndeksertListe<>;
+
+    public skrivUtResepter(){
+        //null
+    }
+
+    
 }
 
 
