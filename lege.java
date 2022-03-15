@@ -1,8 +1,8 @@
 //Klasse lege som sammenligner og holder data om leger
 
-class Lege implements Comparable<Lege>{
+class lege implements Comparable<lege>{
     String navn;
-    Lege(String navn){
+    lege(String navn){
         this.navn = navn;
     }
     public String toString(){
@@ -13,7 +13,7 @@ class Lege implements Comparable<Lege>{
         return navn;
     }
     
-    public int compareTo(Lege x){
+    public int compareTo(lege x){
         return x.hentNavn().compareTo(this.navn);
     }
 }
