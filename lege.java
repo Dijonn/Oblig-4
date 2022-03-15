@@ -1,4 +1,3 @@
-
 class lege{
     String navn;
     lege(String navn){
