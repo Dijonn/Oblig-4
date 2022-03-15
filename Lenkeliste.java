@@ -1,6 +1,47 @@
 import java.util.Iterator;
-
+class Test{
+    public static void main(String[] args) {
+        Koe<String> ny = new Koe<>();
+        ny.leggTil("Hans");
+        ny.leggTil("Hans1");
+        ny.leggTil("Hans2");
+        ny.leggTil("Hans3");
+        for (String x : ny) {
+            System.out.println(x);
+        }
+    }
+    
+}
 abstract class Lenkeliste <T> implements Liste<T> {
+
+
+    public Iterator<T> iterator(){
+        return new LenkelisteIterator();
+    }
+
+    class LenkelisteIterator implements Iterator<T>{
+        Node ny = forste;
+
+        @Override
+        public boolean hasNext(){
+            return ny != null;
+        }
+
+        @Override
+        public T next(){
+            if( hasNext()){
+                Node midl = ny;
+                ny = ny.neste;
+                return midl.hentData();
+            }
+            return null;
+        }
+
+    } 
+
+    
+
+
 
     public  Node forste;
 
@@ -23,25 +64,6 @@ abstract class Lenkeliste <T> implements Liste<T> {
         }
     }
 
-    public  Iterator<T> Iterator(){
-        LenkelisteIterator nyListe = new LenkelisteIterator();
-        return nyListe; 
-    }
-
-    public class LenkelisteIterator implements Iterator<T>{
-        Node node = forste;
-        private int posisjon = 0;
-        
-        public boolean hasNext(){
-            return posisjon < stoerrelse();
-        }
-
-        public T next(){
-            posisjon ++;
-            return hentn(posisjon-1);
-    }
-    
-
     public int stoerrelse(){
         //finner størrelsen til lenkeliste og stabel
         int teller = 0;
@@ -60,7 +82,6 @@ abstract class Lenkeliste <T> implements Liste<T> {
         //forste er null gir ny=forste
         if(forste == null){
             forste = nyNode;
-            System.out.println("Legger til første");
         }
 
         //hvis forste ikke er null må vi komme oss til slutten av listen
@@ -127,5 +148,4 @@ abstract class Lenkeliste <T> implements Liste<T> {
         }
         return svarstreng;
     }
-}
 }

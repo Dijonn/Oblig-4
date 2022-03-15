@@ -1,4 +1,4 @@
-import java.util.Iterator;
+
 
 public class IndeksertListe<T> extends Lenkeliste<T> {
 
