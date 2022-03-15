@@ -45,10 +45,4 @@ class Prioritetskoe<T extends Comparable<T>> extends Lenkeliste<T>{
             }
         }
     }
-
-    @Override
-    public Iterator<T> iterator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

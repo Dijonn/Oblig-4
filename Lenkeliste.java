@@ -4,24 +4,6 @@ abstract class Lenkeliste <T> implements Liste<T> {
 
     public  Node forste;
 
-    public  Iterator<T> Iterator(){
-        LenkelisteIterator nyListe = new LenkelisteIterator();
-        return nyListe; 
-    }
-
-    class LenkelisteIterator implements Iterator<T>{
-        Node node = forste;
-        public boolean hasNext(){
-            return node.neste != null;
-        }
-        public T next(){
-            if(node.neste != null){
-                forste = node.neste;
-                return node.neste.hentData();
-            }
-            return null;
-        }
-    }
     public class Node{
 
         Node neste = null;
@@ -41,6 +23,23 @@ abstract class Lenkeliste <T> implements Liste<T> {
         }
     }
 
+    public  Iterator<T> Iterator(){
+        LenkelisteIterator nyListe = new LenkelisteIterator();
+        return nyListe; 
+    }
+
+    public class LenkelisteIterator implements Iterator<T>{
+        Node node = forste;
+        private int posisjon = 0;
+        
+        public boolean hasNext(){
+            return posisjon < stoerrelse();
+        }
+
+        public T next(){
+            posisjon ++;
+            return hentn(posisjon-1);
+    }
     
 
     public int stoerrelse(){
@@ -61,11 +60,13 @@ abstract class Lenkeliste <T> implements Liste<T> {
         //forste er null gir ny=forste
         if(forste == null){
             forste = nyNode;
+            System.out.println("Legger til første");
         }
 
         //hvis forste ikke er null må vi komme oss til slutten av listen
         //og sette neste variabelen til nest siste element til den nye noden. 
         else{
+            System.out.println("legger til x");
             Node tmp = forste;
             while(tmp.neste != null) {
                 tmp = tmp.neste;
@@ -76,6 +77,28 @@ abstract class Lenkeliste <T> implements Liste<T> {
 
     public T hent(){
         return forste.hentData();
+    }
+
+    public T hentn(int posisjon){
+        
+        if(posisjon > stoerrelse() || posisjon < 0){
+            throw new UgyldigListeindeks(-1);
+        }
+
+        int peker = 0;
+        Node tmp = forste;
+
+        while(tmp != null){
+            
+            //legger inn +1 siden listen igjen ikke 
+            if(peker == posisjon){
+                return tmp.hentData();
+            }
+
+            peker++;
+            tmp = tmp.neste;
+        }
+        return null;
     }
 
     public T fjern(){
@@ -104,4 +127,5 @@ abstract class Lenkeliste <T> implements Liste<T> {
         }
         return svarstreng;
     }
+}
 }
