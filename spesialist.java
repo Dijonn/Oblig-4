@@ -11,6 +11,6 @@ public class spesialist extends lege implements godkjenningsFritak {
         return this.kontrollId;
     }
     public String toString(){
-        return "Navn: " + this.navn + " KontrollId:" + this.kontrollId;
+        return this.navn + " KontrollId:" + this.kontrollId;
     }
 }
