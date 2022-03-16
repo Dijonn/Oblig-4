@@ -7,12 +7,14 @@ public class Legesystem {
     public void lesFraFil(String fil) throws FileNotFoundException{
         File text = new File(fil);
         Scanner leser = new Scanner(fil);
+        String linje;
         while(leser.hasNextLine()){
             while(leser.nextLine() != "# Legemidler (navn,type,pris,virkestoff,[styrke])"){
                 if(leser.nextLine() != "# Pasienter (navn, fnr)"){
-                    String navn = leser.next();
-                    int foedselsnummer = leser.nextInt();
-                    System.out.println(navn + foedselsnummer);
+                    linje = leser.nextLine();
+                    String deler[] = linje.split(",");
+                    String navn = deler[0];
+                    int foedselsnummer = Integer.parseInt(deler[1]);
                 }
             }
         }
