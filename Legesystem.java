@@ -17,19 +17,18 @@ public class Legesystem {
             while(! linje.contains("#") ){ // gå gjennom alle linjer knyttet til pasient
                 
                 if(hashtagTeller == 2){
-                    System.out.println("pasienter");
+                    //System.out.println("pasienter");
+                    
                 }
                 else if(hashtagTeller == 3){
-                    System.out.println("legemidler");
+                    //System.out.println("legemidler");
                 }
                 else if(hashtagTeller == 4){
-                    System.out.println("lege");
+                    //System.out.println("lege");
                 }
                 else if(hashtagTeller == 5){
-                    System.out.println("resept");
+                    //System.out.println("resept");
                 }
-
-                System.out.println(linje);
                 
 
                 if(leser.hasNextLine()){
@@ -37,12 +36,15 @@ public class Legesystem {
                     String deler[] = linje.split(",");
 
                 }
+
                 else{
                     break;
                 }
+
             }
         }
         leser.close();
+        
     }
     public static void main(String[] args) throws FileNotFoundException {
         Legesystem test = new Legesystem();
