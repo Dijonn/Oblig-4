@@ -3,17 +3,19 @@ public class GUI {
     public static void main(String[] args) {
         String svar = "";
         Scanner input = new Scanner(System.in);
-        while(svar != "q" ){
-            System.out.println(
+        System.out.println(
                 "(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
                 "(O)pprette og legge til nye elementer i systemet \n" +
                 "(B)ruke en gitt resept fra listen til en pasient \n" +
                 "(P)rint ut forskjellige former for statistikk \n" +
                 "(L)age ny fil og skrive alle data til fil ");
-            System.out.print("Skriv inn oensket kommando: ");
-
             
+        while(svar != "q" ){
+            
+            System.out.print("Skriv inn oensket kommando: ");  // bare pynt
             svar = input.next();
+            System.out.print("Dette skjedde: ");  //bare pynt
+
 
             if(svar.toLowerCase().compareTo("s") == 0){
                 //ikke lagt inn funksjons
