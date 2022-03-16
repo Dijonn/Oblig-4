@@ -13,6 +13,7 @@ public class Legesystem {
         File text = new File(fil);
         Scanner leser = new Scanner(text);
         String linje;
+    
         int hashtagTeller = 0;
         
 
@@ -36,25 +37,59 @@ public class Legesystem {
                     //lager nytt legemiddel og legger dette i legemiddellenketliste;
                     String narkotisk = "narkotisk";
                     String vanlig = "vanlig";
-                    String vanedannende = "vanedannende";
 
                     if(deler[1].compareTo(narkotisk) == 0 ){ //hvis type er vanlig
-                        Narkotisk ny = new Narkotisk(deler[0], Integer.parseInt(deler[2]), Integer.parseInt(deler[3]), Integer.parseInt(deler[4]));
+                        Narkotisk ny = new Narkotisk(deler[0], Integer.parseInt(deler[2]), Double.parseDouble(deler[3]), Integer.parseInt(deler[4]));
                         legemiddel.leggTil(ny);
                     }
                     else if(deler[1].compareTo(vanlig) == 0 ){ //hvis type er vanlig
-                        
+                        Vanlig ny = new Vanlig(deler[0],Integer.parseInt(deler[2]), Double.parseDouble(deler[3]));
+                        legemiddel.leggTil(ny);
                     }
                     else{  //ett alternativ igjen, vanedannende. 
-                        
+                        Vanedannende ny = new Vanedannende(deler[0],Integer.parseInt(deler[2]) , Double.parseDouble(deler[3]), Integer.parseInt(deler[4]));
+                        legemiddel.leggTil(ny);
                     }
 
                 }
                 else if(hashtagTeller == 4){
                     //System.out.println("lege");
+                    if(deler[1].compareTo("0") == 0){
+                        lege nyLege = new lege(deler[0]);
+                        lege.leggTil(nyLege);
+                    }
+                    else{
+                        spesialist nySpes = new spesialist(deler[0], deler[1]);
+                        lege.leggTil(nySpes);
+                    }
                 }
                 else if(hashtagTeller == 5){
                     //System.out.println("resept");
+                    lege storLege = null;
+                    for(lege x:lege){
+                        if(deler[1].compareTo(x.hentNavn()) == 0){
+                            storLege = x;
+                        }
+                    }
+                    if(deler[3].compareTo("hvit") == 0 ){
+                        hvitResept nyhvit = new hvitResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                        resept.leggTil(nyhvit);
+                    }
+                    else if(deler[3].compareTo("blaa") == 0 ){
+                        blaaResept nyblaa = new blaaResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                        resept.leggTil(nyblaa);
+                    }
+
+                    else if(deler[3].compareTo("militaer") == 0 ){
+                        MilitaerResept nymil = new MilitaerResept(storLege, legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                        resept.leggTil(nymil);
+                    }
+
+                    else{
+                        pResept nyP = new pResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                        resept.leggTil(nyP);
+                    }
+
                 }
                 
 
@@ -71,6 +106,9 @@ public class Legesystem {
         for(pasient x: pasienter){
             System.out.println(x);
         }
+        for(lege x : lege){
+            System.out.println(x);
+        }
         leser.close();
 
     }
@@ -80,3 +118,4 @@ public class Legesystem {
         
     }
 }
+
