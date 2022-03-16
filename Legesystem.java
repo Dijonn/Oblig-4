@@ -15,8 +15,10 @@ public class Legesystem {
                     String deler[] = linje.split(",");
                     String navn = deler[0];
                     int foedselsnummer = Integer.parseInt(deler[1]);
+                    System.out.println(navn + foedselsnummer);
                 }
             }
         }
+        leser.close();
     }
 }
