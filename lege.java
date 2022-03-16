@@ -1,13 +1,12 @@
 //Klasse lege som sammenligner og holder data om leger
 
-
 class lege implements Comparable<lege> {
     String navn;
     lege(String navn) {
         this.navn = navn;
     }
     public String toString() {
-        return "Navn: " + navn;
+        return navn;
     }
     
     public String hentNavn() {
@@ -22,8 +21,7 @@ class lege implements Comparable<lege> {
 
     public void skrivUtResepter() {
         for(Resept x: utskrevneResepter) {
-            System.out.println(x + " her er reseptene til legen");
-            System.out.println("er dette leggtil eller settinn?????");
+            System.out.println(x);
         }
     }
 
@@ -49,11 +47,15 @@ class lege implements Comparable<lege> {
         return blaa;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UlovligUtskrift {
         lege hans = new lege("Hans");
         Vanedannende oxy = new Vanedannende("Oxy", 100, 300, 10);
-        pasient dion = new pasient();
+        pasient dion = new pasient("Dion", "91082");
+        hans.skrivMilResept(oxy, dion);
+        hans.skrivHvitResept(oxy, dion, 3);
+        hans.skrivUtResepter();
+        }
     }
-}
+
 
 
