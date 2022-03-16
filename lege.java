@@ -48,6 +48,12 @@ class lege implements Comparable<lege> {
         utskrevneResepter.leggTil(blaa);
         return blaa;
     }
+
+    public static void main(String[] args) {
+        lege hans = new lege("Hans");
+        Vanedannende oxy = new Vanedannende("Oxy", 100, 300, 10);
+        pasient dion = new pasient();
+    }
 }
 
 
