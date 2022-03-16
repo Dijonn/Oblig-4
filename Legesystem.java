@@ -13,6 +13,7 @@ public class Legesystem {
         File text = new File(fil);
         Scanner leser = new Scanner(text);
         String linje;
+    
         int hashtagTeller = 0;
         
 
