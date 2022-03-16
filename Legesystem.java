@@ -72,26 +72,27 @@ public class Legesystem {
                         }
                     }
                     if(deler[3].compareTo("hvit") == 0 ){
-                        hvitResept nyhvit = new hvitResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                        hvitResept nyhvit = new hvitResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nyhvit);
                     }
                     else if(deler[3].compareTo("blaa") == 0 ){
-                        blaaResept nyblaa = new blaaResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                        blaaResept nyblaa = new blaaResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nyblaa);
                     }
 
                     else if(deler[3].compareTo("militaer") == 0 ){
-                        MilitaerResept nymil = new MilitaerResept(storLege, legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                        MilitaerResept nymil = new MilitaerResept(storLege, legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nymil);
                     }
 
-                    else{
-                        pResept nyP = new pResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])), pasienter.hent(Integer.parseInt(deler[2])));
+                    else if(deler[3].compareTo("p") == 0 ){
+                        pResept nyP = new pResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nyP);
                     }
+                    else{System.out.println("hie");}
 
                 }
-                
+               
 
                 if(leser.hasNextLine()){
                     linje = leser.nextLine();
@@ -103,12 +104,20 @@ public class Legesystem {
 
             }
         }
-        for(pasient x: pasienter){
+        /*for(pasient x: pasienter){
             System.out.println(x);
         }
         for(lege x : lege){
             System.out.println(x);
         }
+        */
+        for(Legemiddel x : legemiddel){
+            System.out.println(x);
+        }
+        for(Resept x: resept){
+            System.out.println(x);
+        }
+
         leser.close();
 
     }
