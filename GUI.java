@@ -8,7 +8,9 @@ public class GUI {
                 "(O)pprette og legge til nye elementer i systemet \n" +
                 "(B)ruke en gitt resept fra listen til en pasient \n" +
                 "(P)rint ut forskjellige former for statistikk \n" +
-                "(L)age ny fil og skrive alle data til fil ");
+                "(L)age ny fil og skrive alle data til fil \n"+
+                "(Q)uit");
+                
             
         while(svar != "q" ){
             
