@@ -6,8 +6,8 @@ class lege implements Comparable<lege> {
         this.navn = navn;
     }
     public String toString() {
-        return navn;
-    }
+        return navn +"\n";
+    }   
     
     public String hentNavn() {
         return navn;

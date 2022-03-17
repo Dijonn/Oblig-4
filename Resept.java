@@ -2,13 +2,13 @@
 
 abstract class Resept{
     protected static int reseptId = 1;
-    lege ansvarligLege;
-    int reit;
-    Legemiddel Legemiddel;
-    int Pris;
-    String farge;
-    int Id_resept;
-    pasient pasient;
+    protected lege ansvarligLege;
+    protected int reit;
+    protected Legemiddel Legemiddel;
+    protected int Pris;
+    protected String farge;
+    protected int Id_resept;
+    protected  pasient pasient;
     
     
     Resept( lege ansvarligLege, int reit, Legemiddel Legemiddel, pasient pasient){
@@ -34,9 +34,9 @@ abstract class Resept{
     public String hentLegemiddel(){
         return Legemiddel.navn;
     }
-    public String toString(Resept resept){
-        return "ReseptID:" + this.hentReseptId(resept) + " Ansvarlig lege:" + this.hentAnsvarligLege() + " PasientID:" + this.hentPasientId() + " Reit:" + this.hentReit();
-    }
+    /* public String toString(Resept resept){
+        return "ReseptID:" + this.hentReseptId(resept) + "\n Ansvarlig lege:" + this.hentAnsvarligLege() + "\n PasientID:" + this.hentPasientId() + "\n Reit:" + this.hentReit();
+    } */
     public boolean bruk(){
         if(this.reit>1){
             this.reit -=1;
@@ -50,7 +50,7 @@ abstract class Resept{
     abstract public int prisAaBetale();
 
     public String toString(){
-        return "Ansvarlig lege: " + ansvarligLege + " Reit:" + reit + " Legemiddel:" + this.hentLegemiddel() + " Id resept:" +Id_resept + " Id pasient:" + pasient + " Pris:" + this.prisAaBetale();    }
+        return "Ansvarlig lege: " + ansvarligLege + "\nReit:" + reit + "\nLegemiddel:" + this.hentLegemiddel() + "\nId resept:" +Id_resept + "\nId pasient:" + this.pasient.id + "\nPris:" + this.prisAaBetale() + "\n";   }
 }
 
 

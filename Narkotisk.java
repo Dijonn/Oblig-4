@@ -8,7 +8,7 @@ class Narkotisk extends Legemiddel{
     }
     
     public String toString(){
-        return super.toString() + " Narkotisk styrke:" + this.hentNarkotiskStyrke();
+        return super.toString() + "Narkotisk styrke:" + this.hentNarkotiskStyrke() + "\n";
     }
     public int hentNarkotiskStyrke(){
         return this.narkotiskStyrke;

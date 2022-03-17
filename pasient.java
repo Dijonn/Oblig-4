@@ -12,6 +12,6 @@ public class pasient {
     }
 
     public String toString(){
-        return ("Navn: " + this.navn + "\n"+ "Foedselsnummer: " + this.foedselsnummmer + "\n" + "ID: " + this.id);
+        return ("Navn: " + this.navn + "\n"+ "Foedselsnummer: " + this.foedselsnummmer + "\n" + "ID: " + this.id + "\n");
     }
 }
