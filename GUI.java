@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class GUI extends Legesystem{
     
+    //Printer ut hovedmenyen til brukergensesnittet
     public static void PrintHovedMeny(){
         System.out.println(
             "(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
@@ -11,6 +12,7 @@ public class GUI extends Legesystem{
             "(Q)uit");
     }
 
+    //Printer ut submenyen til brukergensesnittet
     static void PrintSubMeny_DelO(){
         System.out.println("\nOensker du å opprette: \n"+ 
             "(L)ege \n" +
@@ -20,9 +22,9 @@ public class GUI extends Legesystem{
             "(Q)uit til hovedmeny");
             }
 
-
+    // Sjekker om oppgitt lege, legemiddel og pasient er i listene. 
     public static boolean gyldighet(String lege, String legemiddel, String pasient){
-        
+
         boolean gyldig = false; 
         
         for(lege x: leger){
@@ -48,6 +50,37 @@ public class GUI extends Legesystem{
 
         return gyldig;
     }
+
+    //henter ut lege som tilsvarer Stringen
+    public static lege hentLege(String l){
+        for (lege x : leger) {
+            if(x.navn.compareTo(l)==0){
+                return x;
+            }
+        }
+        return null;
+    }
+
+    //Henter ut legemiddel som har samme navn som oppgitt string
+    public static Legemiddel hentLegeMiddel(String l){
+        for (Legemiddel x : legemiddelListe) {
+            if(x.navn.compareTo(l)==0){
+                return x;
+            }
+        }
+        return null;
+    }
+
+    //Henter ut pasient som tilsvarer String oppgitt
+    public static pasient hentPasient(String p){
+        for (pasient x : pasienter) {
+            if(x.navn.compareTo(p)==0){
+                return x;
+            }
+        }
+        return null;
+    }
+
 
     public static void main(String[] args) {
 
@@ -89,7 +122,7 @@ public class GUI extends Legesystem{
 
 
                     //LEGE LEGE LEGE LEGE LEGE
-
+                    // Lager lege og legger til i liste
                     if(svar.toLowerCase().compareTo("l") == 0){
                         System.out.print("(S)pesialist eller (V)anlig: ");
                         svar = input.next();
@@ -102,7 +135,7 @@ public class GUI extends Legesystem{
                             spesialist nySpes = new spesialist(svar1, svar2);
                             leger.leggTil(nySpes);
                         }
-                        
+
                         else if(svar.toLowerCase().compareTo("v") == 0){
                             System.out.println("Lager vanlig lege");
                             System.out.print("\nOppgi navn: ");
@@ -120,7 +153,7 @@ public class GUI extends Legesystem{
 
                     
                     //// PASIENT PASIENT PASIENT PASIENT 
-
+                    // Lager pasient og legger til i liste
                     else if(svar.toLowerCase().compareTo("p") == 0){
                         System.out.print("\nLager ny pasient");
                         System.out.print("\nOppgi navn: ");
@@ -147,13 +180,14 @@ public class GUI extends Legesystem{
 
                         );
                         
+                        //KAN DANNE ALLE DE FORSKJELLIGE RESEPTENE OG LEGGE TIL I RESEPTLISTEN
                         while( svar != "q"){
                             svar = input.next();
                             
+                            // LAGER HVIT RESEPT OG LEGGER I LISTE
                             if(svar.toLowerCase().compareTo("h") == 0){
                                 
                                 // Ta inn nodvendig input
-                                boolean gyldig = false;
                                 System.out.println("Lager hvit resept.");
                                 System.out.print("Ansvarlig lege: ");
                                 String lege = input.next();
@@ -166,29 +200,102 @@ public class GUI extends Legesystem{
                                 
                             
                                 if(gyldighet(lege, legemiddel, pasient)){
-                                    System.out.println("hei");
-                                    //hvitResept nyHvit = new hvitResept(lege, Integer.parseInt(reit), legemiddel, pasient)
+
+                                    hvitResept nyHvit = new hvitResept(hentLege(lege), Integer.parseInt(reit), hentLegeMiddel(legemiddel), hentPasient(pasient));
+                                    resept.leggTil(nyHvit);
                                     break;
                                 }
 
                                 else{
-                                    System.out.println("false");
+                                    System.out.println("din informasjon er ikke lovlig");
                                     break;
                                 }
                             } 
 
+                            // LAGER BLÅ RESEPT OG LEGGER I LISTE
                             else if(svar.toLowerCase().compareTo("b") == 0){
-                                // lag blaa resept
+                                
+                                // Ta inn nodvendig input
+                                System.out.println("Lager blaa resept.");
+                                System.out.print("Ansvarlig lege: ");
+                                String lege = input.next();
+                                System.out.print("Legemiddel: ");
+                                String legemiddel = input.next();
+                                System.out.print("Pasient: ");
+                                String pasient = input.next();
+                                System.out.print("Reit: ");
+                                String reit = input.next();
+                                
+                            
+                                if(gyldighet(lege, legemiddel, pasient)){
+
+                                    blaaResept nyBlaa = new blaaResept(hentLege(lege), Integer.parseInt(reit), hentLegeMiddel(legemiddel), hentPasient(pasient));
+                                    resept.leggTil(nyBlaa);
+                                    break;
+                                }
+
+                                else{
+                                    System.out.println("din informasjon er ikke lovlig");
+                                    break;
+                                }
+
                             }
 
+                            // LAGER MILITAERRESEPT OG LEGGER DENNE I RESEPTLISTEN
                             else if(svar.toLowerCase().compareTo("m") == 0){
-                                // lag militaer resept
+                                
+                                // Ta inn nodvendig input
+                                System.out.println("Lager militaer-resept.");
+                                System.out.print("Ansvarlig lege: ");
+                                String lege = input.next();
+                                System.out.print("Legemiddel: ");
+                                String legemiddel = input.next();
+                                System.out.print("Pasient: ");
+                                String pasient = input.next();                            
+                            
+                                if(gyldighet(lege, legemiddel, pasient)){
+
+                                    MilitaerResept nyMil = new MilitaerResept(hentLege(lege), hentLegeMiddel(legemiddel), hentPasient(pasient));
+                                    resept.leggTil(nyMil);
+                                    break;
+                                }
+
+                                else{
+                                    System.out.println("din informasjon er ikke lovlig");
+                                    break;
+                                }
+
                             }
 
+                            // LAGER P RESEPT OG LEGGER TIL I LISTE
                             else if(svar.toLowerCase().compareTo("p") == 0){
-                                // lag p-resept
+                                
+                                // Ta inn nodvendig input
+                                System.out.println("Lager pResept.");
+                                System.out.print("Ansvarlig lege: ");
+                                String lege = input.next();
+                                System.out.print("Legemiddel: ");
+                                String legemiddel = input.next();
+                                System.out.print("Pasient: ");
+                                String pasient = input.next();
+                                System.out.print("Reit: ");
+                                String reit = input.next();
+                                
+                            
+                                if(gyldighet(lege, legemiddel, pasient)){
+
+                                    pResept nyP = new pResept(hentLege(lege), Integer.parseInt(reit), hentLegeMiddel(legemiddel), hentPasient(pasient));
+                                    resept.leggTil(nyP);
+                                    break;
+                                }
+
+                                else{
+                                    System.out.println("din informasjon er ikke lovlig");
+                                    break;
+                                }
                             }
 
+                            //Quit submenyen, gå opp ett hakk i menyskopet
                             else if(svar.toLowerCase().compareTo("q") == 0){
                                 PrintSubMeny_DelO();
                                 break;
@@ -204,7 +311,7 @@ public class GUI extends Legesystem{
 
 
                     // LEGEMIDDEL LEGEMIDDEL LEGEMIDDEL LEGEMIDDEL
-
+                    // Lager legemiddel og legger til i liste
                     else if(svar.toLowerCase().compareTo("le") == 0){
 
                         System.out.println("(N)arkotsik, (V)anlig eller (VD)nedannende: ");
@@ -253,11 +360,14 @@ public class GUI extends Legesystem{
                             else{System.out.println("Ugyldig"); break;}
                         }
 
+                    // quiter ut av submenyen og går til hovedmenyen
                     else if(svar.toLowerCase().compareTo("q") == 0){
                         PrintHovedMeny(); 
                         break;
 
                     }
+                    
+                    // Ikke gyldig input
                     else{System.out.println("ulovlig input");}
                 }
             }
