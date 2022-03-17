@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class GUI {
+public class GUI extends Legesystem{
     public static void main(String[] args) {
         String svar = "";
         Scanner input = new Scanner(System.in);
@@ -38,9 +38,11 @@ public class GUI {
                 "(R)esept \n"+
                 "(LE)gemiddel \n"+
                 "(Q)uit");
-                System.out.print("Skriv inn oensket kommando: ");  // bare pynt
-                svar = input.next();
+
                 while(svar != "Q"){
+                    
+                    System.out.print("Skriv inn oensket kommando: ");  // bare pynt
+                    svar = input.next();
 
                     if(svar.toLowerCase().compareTo("l") == 0){
                         System.out.print("(S)pesialist eller (V)anlig: ");
@@ -50,11 +52,14 @@ public class GUI {
                             String svar1 = input.next(); 
                             System.out.println("Oppgi kontrollid");
                             String svar2 = input.next();
-                            lege nyspes = new spesialist(svar1, svar2);
-                            lege.leggTil(nyspes);
+                            spesialist nySpes = new spesialist(svar1, svar2);
+                            leger.leggTil(nySpes);
                         }
                         else if(svar.toLowerCase().compareTo("v") == 0){
-
+                            System.out.println("Oppgi navn;");
+                            String svar1 = input.next();
+                            lege nyLege = new lege(svar1);
+                            leger.leggTil(nyLege);
                         }
 
                         else{
@@ -78,7 +83,7 @@ public class GUI {
                         System.out.println("taper"); break;
 
                     }
-                    else{System.out.println("Du er stygg");}
+                    else{System.out.println("ulovlig input");}
                 }
             }
             
@@ -103,5 +108,8 @@ public class GUI {
             System.out.println("\n");
         }
         input.close();
+        for(lege x:leger){
+            System.out.println(x);
+        }
     }   
 }
