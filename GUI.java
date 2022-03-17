@@ -1,20 +1,25 @@
 import java.util.Scanner;
 public class GUI extends Legesystem{
-    public static void main(String[] args) {
-
-        String svar = "";
-        Scanner input = new Scanner(System.in);
-                
-        while(svar != "q" ){
-            
-            System.out.println(
+    
+    public static void PrintHovedMeny(){
+        System.out.println(
                 "(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
                 "(O)pprette og legge til nye elementer i systemet \n" +
                 "(B)ruke en gitt resept fra listen til en pasient \n" +
                 "(P)rint ut forskjellige former for statistikk \n" +
                 "(L)age ny fil og skrive alle data til fil \n"+
                 "(Q)uit");
+    }
 
+    public static void main(String[] args) {
+
+        String svar = "";
+        Scanner input = new Scanner(System.in);
+        
+        PrintHovedMeny();
+    
+        while(svar != "q" ){
+            
             System.out.print("Skriv inn oensket kommando: ");  // bare pynt
             svar = input.next();
             System.out.print("Dette skjedde: ");  //bare pynt
@@ -33,7 +38,7 @@ public class GUI extends Legesystem{
             else if(svar.toLowerCase().compareTo("o") == 0){
                 //ikke lagt inn funksjon
                 System.out.println("Opprette og legge til nye elementer i systemet (deloppgave E4).");
-                System.out.println("Ønsker du å opprette: \n"+ 
+                System.out.println("Oensker du å opprette: \n"+ 
                 "(L)ege \n" +
                 "(P)asient \n"+
                 "(R)esept \n"+
@@ -64,7 +69,8 @@ public class GUI extends Legesystem{
                         }
 
                         else{
-                            System.out.println("Ugyldig"); break;
+                            System.out.println("Ugyldig");
+                            break;
                         }
                     }
 
@@ -81,7 +87,9 @@ public class GUI extends Legesystem{
                     }
 
                     else if(svar.toLowerCase().compareTo("q") == 0){
-                        System.out.println("taper"); break;
+                        System.out.println("taper"); 
+                        PrintHovedMeny(); 
+                        break;
 
                     }
                     else{System.out.println("ulovlig input");}
@@ -109,9 +117,6 @@ public class GUI extends Legesystem{
             System.out.println("\n");
         }
         input.close();
-        for(lege x:leger){
-            System.out.println(x);
-        }
     }   
 }
 

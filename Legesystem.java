@@ -6,7 +6,7 @@ public class Legesystem {
 
     IndeksertListe<pasient> pasienter = new IndeksertListe<>();
     IndeksertListe<Legemiddel> legemiddel = new IndeksertListe<>();
-    IndeksertListe<lege> lege = new IndeksertListe<>();
+    static IndeksertListe<lege> leger = new IndeksertListe<>();
     IndeksertListe<Resept> resept = new IndeksertListe<>();
 
     public void lesFraFil(String fil) throws FileNotFoundException{
@@ -56,17 +56,17 @@ public class Legesystem {
                     //System.out.println("lege");
                     if(deler[1].compareTo("0") == 0){
                         lege nyLege = new lege(deler[0]);
-                        lege.leggTil(nyLege);
+                        leger.leggTil(nyLege);
                     }
                     else{
                         spesialist nySpes = new spesialist(deler[0], deler[1]);
-                        lege.leggTil(nySpes);
+                        leger.leggTil(nySpes);
                     }
                 }
                 else if(hashtagTeller == 5){
                     //System.out.println("resept");
                     lege storLege = null;
-                    for(lege x:lege){
+                    for(lege x:leger){
                         if(deler[1].compareTo(x.hentNavn()) == 0){
                             storLege = x;
                         }
@@ -104,13 +104,13 @@ public class Legesystem {
 
             }
         }
-        for(pasient x: pasienter){
+        /*for(pasient x: pasienter){
             System.out.println(x);
         }
         for(lege x : lege){
             System.out.println(x);
         }
-       
+        */
         for(Legemiddel x : legemiddel){
             System.out.println(x);
         }
