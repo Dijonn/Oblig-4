@@ -5,8 +5,8 @@ abstract class Resept{
     lege ansvarligLege;
     int reit;
     Legemiddel Legemiddel;
-    String farge;
     int Pris;
+    String farge;
     int Id_resept;
     pasient pasient;
     
@@ -47,11 +47,10 @@ abstract class Resept{
     public String farge(){
         return this.farge;
     }  
-    public int prisAaBetale(){
-        return this.Pris;
-    }
+    abstract public int prisAaBetale();
+
     public String toString(){
-        return "Ansvarlig lege: " + ansvarligLege + " Reit:" + reit + " Legemiddel:" + Legemiddel.hentNavn() + " Id resept:" +Id_resept + " Id pasient:" + pasient + " Pris:" + Pris;    }
+        return "Ansvarlig lege: " + ansvarligLege + " Reit:" + reit + " Legemiddel:" + this.hentLegemiddel() + " Id resept:" +Id_resept + " Id pasient:" + pasient + " Pris:" + this.prisAaBetale();    }
 }
 
 

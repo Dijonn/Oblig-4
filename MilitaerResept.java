@@ -8,4 +8,8 @@ class MilitaerResept extends hvitResept{
     public String toString(){
         return super.toString();
     }
+
+    public int prisAaBetale(){
+        return 0;
+    }
 }
