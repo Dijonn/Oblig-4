@@ -59,7 +59,7 @@ public class GUI extends Legesystem{
         while(svar != "q" ){
             
             //Logikken for scanner og input
-            System.out.print("Skriv inn oensket kommando: ");  // bare pynt
+            System.out.print("Skriv inn oensket kommando, hovedmeny: ");  // bare pynt
             svar = input.next();
             System.out.print("Dette skjedde: ");  //bare pynt
 
@@ -84,24 +84,28 @@ public class GUI extends Legesystem{
                 PrintSubMeny_DelO();
                 while(svar != "Q"){
 
-                    System.out.print("Skriv inn oensket kommando: ");  // bare pynt
+                    System.out.print("Skriv inn oensket kommando, submeny O: ");  // bare pynt
                     svar = input.next();
 
 
-                    //LEGE LEGE LEGE LEGE LEGE 
+                    //LEGE LEGE LEGE LEGE LEGE
+
                     if(svar.toLowerCase().compareTo("l") == 0){
                         System.out.print("(S)pesialist eller (V)anlig: ");
                         svar = input.next();
                         if(svar.toLowerCase().compareTo("s") == 0){
-                            System.out.println("Oppgi navn;");
+                            System.out.println("Lager spesialist");
+                            System.out.print("\nOppgi navn: ");
                             String svar1 = input.next(); 
-                            System.out.println("Oppgi kontrollid");
+                            System.out.print("\nOppgi kontrollid: ");
                             String svar2 = input.next();
                             spesialist nySpes = new spesialist(svar1, svar2);
                             leger.leggTil(nySpes);
                         }
+                        
                         else if(svar.toLowerCase().compareTo("v") == 0){
-                            System.out.println("Oppgi navn;");
+                            System.out.println("Lager vanlig lege");
+                            System.out.print("\nOppgi navn: ");
                             String svar1 = input.next();
                             lege nyLege = new lege(svar1);
                             leger.leggTil(nyLege);
@@ -114,12 +118,14 @@ public class GUI extends Legesystem{
                         }
                     }
 
-                    //// ny undermeny
+                    
+                    //// PASIENT PASIENT PASIENT PASIENT 
+
                     else if(svar.toLowerCase().compareTo("p") == 0){
-                        System.out.println("Pasient: \n");
-                        System.out.println("Oppgi navn;");
+                        System.out.print("\nLager ny pasient");
+                        System.out.print("\nOppgi navn: ");
                         String svar1 = input.next(); 
-                        System.out.println("Oppgi foedselsnummer");
+                        System.out.println("\nOppgi foedselsnummer: ");
                         String svar2 = input.next();
                         pasient nyPas = new pasient(svar1, svar2);
                         pasienter.leggTil(nyPas);
@@ -128,14 +134,17 @@ public class GUI extends Legesystem{
 
                     // RESEPT RESEPT RESEPT RESEPT
                     //Logikken for å legge til et resept til legsystem, med skrivResept() metoden. 
+
                     else if(svar.toLowerCase().compareTo("r") == 0){
                         
-                        System.out.println(
+                        System.out.print(
                             "\n(H)vit resept\n"+
                             "(B)laa resept\n"+
                             "(M)ilitaer resept\n"+
                             "(P) resept\n"+
-                            "(Q) gå til forrige meny"
+                            "(Q) gå til forrige meny\n"+
+                            "Skriv oensket kommando, resept"
+
                         );
                         
                         while( svar != "q"){
@@ -159,6 +168,7 @@ public class GUI extends Legesystem{
                                 if(gyldighet(lege, legemiddel, pasient)){
                                     System.out.println("hei");
                                     //hvitResept nyHvit = new hvitResept(lege, Integer.parseInt(reit), legemiddel, pasient)
+                                    break;
                                 }
 
                                 else{
@@ -192,53 +202,58 @@ public class GUI extends Legesystem{
 
                     }
 
-                        else if(svar.toLowerCase().compareTo("le") == 0){
 
-                            System.out.println("(N)arkotsik, (V)anlig eller (VD)nedannende: ");
-                            svar = input.next();
+                    // LEGEMIDDEL LEGEMIDDEL LEGEMIDDEL LEGEMIDDEL
 
-                            if(svar.toLowerCase().compareTo("n") == 0){
-                                System.out.println("Navn");
-                                String svarNavn = input.next();
-                                System.out.println("Pris");
-                                int svarPris = input.nextInt();
-                                System.out.println("Virkestoff");
-                                double svarVirkestoff = input.nextDouble();
-                                System.out.println("Narkotisk styrke");
-                                int svarNarkStyrke = input.nextInt();
-                                Narkotisk nyNark = new Narkotisk(svarNavn, svarPris, svarVirkestoff, svarNarkStyrke);
-                                legemiddel.leggTil(nyNark);
-                            }
+                    else if(svar.toLowerCase().compareTo("le") == 0){
 
-                            else if(svar.toLowerCase().compareTo("v") == 0){
-                                System.out.println("Navn");
-                                String svarNavn = input.next();
-                                System.out.println("Pris");
-                                int svarPris = input.nextInt();
-                                System.out.println("Virkestoff");
-                                double svarVirkestoff = input.nextDouble();
-                                Vanlig nyVan = new Vanlig(svarNavn, svarPris, svarVirkestoff);
-                                legemiddel.leggTil(nyVan);
-                            }
+                        System.out.println("(N)arkotsik, (V)anlig eller (VD)nedannende: ");
+                        svar = input.next();
 
-                            else if(svar.toLowerCase().compareTo("vd") == 0){
-                                System.out.println("Navn");
-                                String svarNavn = input.next();
-                                System.out.println("Pris");
-                                int svarPris = input.nextInt();
-                                System.out.println("Virkestoff");
-                                double svarVirkestoff = input.nextDouble();
-                                System.out.println("VaneStyrke");
-                                int vaneStyrke = input.nextInt();
-                                Vanedannende nyVaneD = new Vanedannende(svarNavn, svarPris, svarVirkestoff, vaneStyrke);
-                                legemiddel.leggTil(nyVaneD);
-                            }
+                        if(svar.toLowerCase().compareTo("n") == 0){
+                            System.out.println("Lager nytt legemiddel");
+                            System.out.print("\nNavn: ");
+                            String svarNavn = input.next();
+                            System.out.print("\nPris: ");
+                            int svarPris = input.nextInt();
+                            System.out.print("\nVirkestoff: ");
+                            double svarVirkestoff = input.nextDouble();
+                            System.out.print("\nNarkotisk styrke: ");
+                            int svarNarkStyrke = input.nextInt();
+                            Narkotisk nyNark = new Narkotisk(svarNavn, svarPris, svarVirkestoff, svarNarkStyrke);
+                            legemiddelListe.leggTil(nyNark);
+                        }
+
+                        else if(svar.toLowerCase().compareTo("v") == 0){
+                            
+                            System.out.print("\nNavn: ");
+                            String svarNavn = input.next();
+                            System.out.print("\nPris: ");
+                            int svarPris = input.nextInt();
+                            System.out.print("\nVirkestoff: ");
+                            double svarVirkestoff = input.nextDouble();
+                            Vanlig nyVan = new Vanlig(svarNavn, svarPris, svarVirkestoff);
+                            legemiddelListe.leggTil(nyVan);
+                        }
+
+                        else if(svar.toLowerCase().compareTo("vd") == 0){
+                            
+                            System.out.print("\nNavn: ");
+                            String svarNavn = input.next();
+                            System.out.print("\nPris: ");
+                            int svarPris = input.nextInt();
+                            System.out.print("\nVirkestoff: ");
+                            double svarVirkestoff = input.nextDouble();
+                            System.out.print("\nVaneStyrke: ");
+                            int vaneStyrke = input.nextInt();
+                            Vanedannende nyVaneD = new Vanedannende(svarNavn, svarPris, svarVirkestoff, vaneStyrke);
+                            legemiddelListe.leggTil(nyVaneD);
+                        }
 
                             else{System.out.println("Ugyldig"); break;}
                         }
 
                     else if(svar.toLowerCase().compareTo("q") == 0){
-                        System.out.println("taper"); 
                         PrintHovedMeny(); 
                         break;
 
