@@ -1,19 +1,20 @@
 import java.util.Scanner;
 public class GUI extends Legesystem{
     public static void main(String[] args) {
+
         String svar = "";
         Scanner input = new Scanner(System.in);
-        System.out.println(
+                
+        while(svar != "q" ){
+            
+            System.out.println(
                 "(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
                 "(O)pprette og legge til nye elementer i systemet \n" +
                 "(B)ruke en gitt resept fra listen til en pasient \n" +
                 "(P)rint ut forskjellige former for statistikk \n" +
                 "(L)age ny fil og skrive alle data til fil \n"+
                 "(Q)uit");
-                
-            
-        while(svar != "q" ){
-            
+
             System.out.print("Skriv inn oensket kommando: ");  // bare pynt
             svar = input.next();
             System.out.print("Dette skjedde: ");  //bare pynt
@@ -25,7 +26,7 @@ public class GUI extends Legesystem{
             }
 
             else if(svar.toLowerCase().compareTo("q") == 0){
-                System.out.println("hade");
+                System.out.println("Hade!");
                 break;
             }
 
@@ -37,10 +38,10 @@ public class GUI extends Legesystem{
                 "(P)asient \n"+
                 "(R)esept \n"+
                 "(LE)gemiddel \n"+
-                "(Q)uit");
+                "(Q)uit til hovedmeny");
 
                 while(svar != "Q"){
-                    
+
                     System.out.print("Skriv inn oensket kommando: ");  // bare pynt
                     svar = input.next();
 
