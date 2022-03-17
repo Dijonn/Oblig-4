@@ -3,13 +3,22 @@ public class GUI extends Legesystem{
     
     public static void PrintHovedMeny(){
         System.out.println(
-                "(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
-                "(O)pprette og legge til nye elementer i systemet \n" +
-                "(B)ruke en gitt resept fra listen til en pasient \n" +
-                "(P)rint ut forskjellige former for statistikk \n" +
-                "(L)age ny fil og skrive alle data til fil \n"+
-                "(Q)uit");
+            "(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
+            "(O)pprette og legge til nye elementer i systemet \n" +
+            "(B)ruke en gitt resept fra listen til en pasient \n" +
+            "(P)rint ut forskjellige former for statistikk \n" +
+            "(L)age ny fil og skrive alle data til fil \n"+
+            "(Q)uit");
     }
+
+    static void PrintSubMeny_DelO(){
+        System.out.println("Oensker du å opprette: \n"+ 
+            "(L)ege \n" +
+            "(P)asient \n"+
+            "(R)esept \n"+
+            "(LE)gemiddel \n"+
+            "(Q)uit til hovedmeny");
+            }
 
     public static void main(String[] args) {
 
@@ -42,13 +51,8 @@ public class GUI extends Legesystem{
             else if(svar.toLowerCase().compareTo("o") == 0){
                 //ikke lagt inn funksjon
                 System.out.println("Opprette og legge til nye elementer i systemet (deloppgave E4).");
-                System.out.println("Oensker du å opprette: \n"+ 
-                "(L)ege \n" +
-                "(P)asient \n"+
-                "(R)esept \n"+
-                "(LE)gemiddel \n"+
-                "(Q)uit til hovedmeny");
-
+                
+                PrintSubMeny_DelO();
                 while(svar != "Q"){
 
                     System.out.print("Skriv inn oensket kommando: ");  // bare pynt
@@ -74,15 +78,55 @@ public class GUI extends Legesystem{
 
                         else{
                             System.out.println("Ugyldig");
+                            PrintSubMeny_DelO();
                             break;
                         }
                     }
 
+                    //// ny undermeny
                     else if(svar.toLowerCase().compareTo("p") == 0){
 
                     }
 
+                    //Logikken for å legge til et resept til legsystem, med skrivResept() metoden. 
                     else if(svar.toLowerCase().compareTo("r") == 0){
+                        
+                        System.out.println(
+                            "(H)vit resept\n"+
+                            "(B)laa resept\n"+
+                            "(M)ilitaer resept\n"+
+                            "(P) resept\n"+
+                            "(Q) gå til forrige meny"
+                        );
+                        while( svar != "q"){
+                            svar = input.next();
+                            
+                            if(svar.toLowerCase().compareTo("h") == 0){
+                                // lag hvit resept
+                            }
+
+                            else if(svar.toLowerCase().compareTo("b") == 0){
+                                // lag blaa resept
+                            }
+
+                            else if(svar.toLowerCase().compareTo("m") == 0){
+                                // lag militaer resept
+                            }
+
+                            else if(svar.toLowerCase().compareTo("p") == 0){
+                                // lag p-resept
+                            }
+
+                            else if(svar.toLowerCase().compareTo("q") == 0){
+                                
+                                break;
+                            }
+
+                            else{
+                                System.out.println("ugyldig input\n");
+                            }
+                        }
+
 
                     }
 
