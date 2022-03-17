@@ -20,6 +20,35 @@ public class GUI extends Legesystem{
             "(Q)uit til hovedmeny");
             }
 
+
+    public static boolean gyldighet(String lege, String legemiddel, String pasient){
+        
+        boolean gyldig = false; 
+        
+        for(lege x: leger){
+            
+            if(x.navn.compareTo(lege) == 0){
+                gyldig = true;
+            }
+        }
+
+        for(Legemiddel x: legemiddelListe){
+            
+            if(x.navn.compareTo(legemiddel) == 0){
+                gyldig = true;
+            }
+        }
+        
+        for(pasient x: pasienter){
+            
+            if(x.navn.compareTo(pasient) == 0){
+                gyldig = true;
+            }
+        }
+
+        return gyldig;
+    }
+
     public static void main(String[] args) {
 
         String svar = "";
@@ -102,7 +131,7 @@ public class GUI extends Legesystem{
                     else if(svar.toLowerCase().compareTo("r") == 0){
                         
                         System.out.println(
-                            "(H)vit resept\n"+
+                            "\n(H)vit resept\n"+
                             "(B)laa resept\n"+
                             "(M)ilitaer resept\n"+
                             "(P) resept\n"+
@@ -126,28 +155,10 @@ public class GUI extends Legesystem{
                                 System.out.print("Reit: ");
                                 String reit = input.next();
                                 
-                                for(lege x: leger){
-                                    
-                                    if(x.navn.compareTo(lege) == 0){
-                                        gyldig = true;
-                                    }
-                                }
-
-                                for(Legemiddel x: legemiddelListe){
-                                    
-                                    if(x.navn.compareTo(legemiddel) == 0){
-                                        gyldig = true;
-                                    }
-                                }
-                                
-                                for(pasient x: pasienter){
-                                    
-                                    if(x.navn.compareTo(pasient) == 0){
-                                        gyldig = true;
-                                    }
-                                }
-                                if(gyldig){
+                            
+                                if(gyldighet(lege, legemiddel, pasient)){
                                     System.out.println("hei");
+                                    //hvitResept nyHvit = new hvitResept(lege, Integer.parseInt(reit), legemiddel, pasient)
                                 }
 
                                 else{
@@ -223,6 +234,9 @@ public class GUI extends Legesystem{
             System.out.println("\n");
         }
         input.close();
+        for(Resept x : resept){
+            System.out.println(x);
+        }
     }   
 }
 
