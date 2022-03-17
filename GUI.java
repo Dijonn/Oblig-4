@@ -11,6 +11,8 @@ public class GUI extends Legesystem{
                 "(Q)uit");
     }
 
+
+
     public static void main(String[] args) {
 
         String svar = "";
@@ -84,6 +86,49 @@ public class GUI extends Legesystem{
 
                     else if(svar.toLowerCase().compareTo("le") == 0){
 
+                        System.out.println("(N)arkotsik, (V)anlig eller (VD)nedannende: ");
+                        svar = input.next();
+
+                        if(svar.toLowerCase().compareTo("n") == 0){
+                            System.out.println("Navn");
+                            String svarNavn = input.next();
+                            System.out.println("Pris");
+                            int svarPris = input.nextInt();
+                            System.out.println("Virkestoff");
+                            double svarVirkestoff = input.nextDouble();
+                            System.out.println("Narkotisk styrke");
+                            int svarNarkStyrke = input.nextInt();
+                            Narkotisk nyNark = new Narkotisk(svarNavn, svarPris, svarVirkestoff, svarNarkStyrke);
+                            legemiddel.leggTil(nyNark);
+                        }
+
+                        else if(svar.toLowerCase().compareTo("v") == 0){
+                            System.out.println("Navn");
+                            String svarNavn = input.next();
+                            System.out.println("Pris");
+                            int svarPris = input.nextInt();
+                            System.out.println("Virkestoff");
+                            double svarVirkestoff = input.nextDouble();
+                            Vanlig nyVan = new Vanlig(svarNavn, svarPris, svarVirkestoff);
+                            legemiddel.leggTil(nyVan);
+                        }
+
+                        else if(svar.toLowerCase().compareTo("vd") == 0){
+                            System.out.println("Navn");
+                            String svarNavn = input.next();
+                            System.out.println("Pris");
+                            int svarPris = input.nextInt();
+                            System.out.println("Virkestoff");
+                            double svarVirkestoff = input.nextDouble();
+                            System.out.println("VaneStyrke");
+                            int vaneStyrke = input.nextInt();
+                            Vanedannende nyVaneD = new Vanedannende(svarNavn, svarPris, svarVirkestoff, vaneStyrke);
+                            legemiddel.leggTil(nyVaneD);
+                        }
+
+                        else{System.out.println("Ugyldig"); break;}
+
+
                     }
 
                     else if(svar.toLowerCase().compareTo("q") == 0){
@@ -117,6 +162,9 @@ public class GUI extends Legesystem{
             System.out.println("\n");
         }
         input.close();
+        for(Legemiddel x : legemiddel){
+            System.out.println(x);
+        }
     }   
 }
 

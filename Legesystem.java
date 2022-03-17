@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Legesystem {
 
     IndeksertListe<pasient> pasienter = new IndeksertListe<>();
-    IndeksertListe<Legemiddel> legemiddel = new IndeksertListe<>();
+    static IndeksertListe<Legemiddel> legemiddel = new IndeksertListe<>();
     static IndeksertListe<lege> leger = new IndeksertListe<>();
     IndeksertListe<Resept> resept = new IndeksertListe<>();
 
@@ -104,13 +104,13 @@ public class Legesystem {
 
             }
         }
-        /*for(pasient x: pasienter){
+        for(pasient x: pasienter){
             System.out.println(x);
         }
-        for(lege x : lege){
+        for(lege x : leger){
             System.out.println(x);
         }
-        */
+       
         for(Legemiddel x : legemiddel){
             System.out.println(x);
         }
