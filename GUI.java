@@ -58,6 +58,8 @@ public class GUI extends Legesystem{
                     System.out.print("Skriv inn oensket kommando: ");  // bare pynt
                     svar = input.next();
 
+
+                    //LEGE LEGE LEGE LEGE LEGE 
                     if(svar.toLowerCase().compareTo("l") == 0){
                         System.out.print("(S)pesialist eller (V)anlig: ");
                         svar = input.next();
@@ -88,6 +90,8 @@ public class GUI extends Legesystem{
 
                     }
 
+
+                    // RESEPT RESEPT RESEPT RESEPT
                     //Logikken for å legge til et resept til legsystem, med skrivResept() metoden. 
                     else if(svar.toLowerCase().compareTo("r") == 0){
                         
