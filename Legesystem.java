@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Legesystem {
 
     static IndeksertListe<pasient> pasienter = new IndeksertListe<>();
-    static IndeksertListe<Legemiddel> legemiddel = new IndeksertListe<>();
+    static IndeksertListe<Legemiddel> legemiddelListe = new IndeksertListe<>();
     static IndeksertListe<lege> leger = new IndeksertListe<>();
     static IndeksertListe<Resept> resept = new IndeksertListe<>();
 
@@ -40,15 +40,15 @@ public class Legesystem {
 
                     if(deler[1].compareTo(narkotisk) == 0 ){ //hvis type er vanlig
                         Narkotisk ny = new Narkotisk(deler[0], Integer.parseInt(deler[2]), Double.parseDouble(deler[3]), Integer.parseInt(deler[4]));
-                        legemiddel.leggTil(ny);
+                        legemiddelListe.leggTil(ny);
                     }
                     else if(deler[1].compareTo(vanlig) == 0 ){ //hvis type er vanlig
                         Vanlig ny = new Vanlig(deler[0],Integer.parseInt(deler[2]), Double.parseDouble(deler[3]));
-                        legemiddel.leggTil(ny);
+                        legemiddelListe.leggTil(ny);
                     }
                     else{  //ett alternativ igjen, vanedannende. 
                         Vanedannende ny = new Vanedannende(deler[0],Integer.parseInt(deler[2]) , Double.parseDouble(deler[3]), Integer.parseInt(deler[4]));
-                        legemiddel.leggTil(ny);
+                        legemiddelListe.leggTil(ny);
                     }
 
                 }
@@ -72,21 +72,21 @@ public class Legesystem {
                         }
                     }
                     if(deler[3].compareTo("hvit") == 0 ){
-                        hvitResept nyhvit = new hvitResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
+                        hvitResept nyhvit = new hvitResept(storLege, Integer.parseInt(deler[4]), legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nyhvit);
                     }
                     else if(deler[3].compareTo("blaa") == 0 ){
-                        blaaResept nyblaa = new blaaResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
+                        blaaResept nyblaa = new blaaResept(storLege, Integer.parseInt(deler[4]), legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nyblaa);
                     }
 
                     else if(deler[3].compareTo("militaer") == 0 ){
-                        MilitaerResept nymil = new MilitaerResept(storLege, legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
+                        MilitaerResept nymil = new MilitaerResept(storLege, legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nymil);
                     }
 
                     else if(deler[3].compareTo("p") == 0 ){
-                        pResept nyP = new pResept(storLege, Integer.parseInt(deler[4]), legemiddel.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
+                        pResept nyP = new pResept(storLege, Integer.parseInt(deler[4]), legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
                         resept.leggTil(nyP);
                     }
                     else{System.out.println("hie");}
@@ -104,14 +104,14 @@ public class Legesystem {
 
             }
         }
-        /*for(pasient x: pasienter){
+        for(pasient x: pasienter){
             System.out.println(x);
         }
-        for(lege x : lege){
+        for(lege x : leger){
             System.out.println(x);
         }
-        */
-        for(Legemiddel x : legemiddel){
+       
+        for(Legemiddel x : legemiddelListe){
             System.out.println(x);
         }
         for(Resept x: resept){
