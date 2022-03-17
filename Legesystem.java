@@ -104,13 +104,13 @@ public class Legesystem {
 
             }
         }
-        /*for(pasient x: pasienter){
+        for(pasient x: pasienter){
             System.out.println(x);
         }
         for(lege x : lege){
             System.out.println(x);
         }
-        */
+       
         for(Legemiddel x : legemiddel){
             System.out.println(x);
         }

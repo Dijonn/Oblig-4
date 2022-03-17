@@ -13,6 +13,6 @@ public class spesialist extends lege implements godkjenningsFritak {
     }
 
     public String toString(){
-        return this.navn + "; KontrollId:" + this.kontrollId;
+        return this.navn + "; KontrollId:" + this.kontrollId + "\n";
     }
 }   
