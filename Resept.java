@@ -2,13 +2,13 @@
 
 abstract class Resept{
     protected static int reseptId = 1;
-    lege ansvarligLege;
-    int reit;
-    Legemiddel Legemiddel;
-    int Pris;
-    String farge;
-    int Id_resept;
-    pasient pasient;
+    protected lege ansvarligLege;
+    protected int reit;
+    protected Legemiddel Legemiddel;
+    protected int Pris;
+    protected String farge;
+    protected int Id_resept;
+    protected pasient pasient;
     
     
     Resept( lege ansvarligLege, int reit, Legemiddel Legemiddel, pasient pasient){
