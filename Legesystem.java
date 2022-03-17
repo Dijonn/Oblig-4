@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Legesystem {
 
-    IndeksertListe<pasient> pasienter = new IndeksertListe<>();
-    IndeksertListe<Legemiddel> legemiddel = new IndeksertListe<>();
+    static IndeksertListe<pasient> pasienter = new IndeksertListe<>();
+    static IndeksertListe<Legemiddel> legemiddel = new IndeksertListe<>();
     static IndeksertListe<lege> leger = new IndeksertListe<>();
-    IndeksertListe<Resept> resept = new IndeksertListe<>();
+    static IndeksertListe<Resept> resept = new IndeksertListe<>();
 
     public void lesFraFil(String fil) throws FileNotFoundException{
         File text = new File(fil);
