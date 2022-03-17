@@ -32,6 +32,54 @@ public class GUI {
             else if(svar.toLowerCase().compareTo("o") == 0){
                 //ikke lagt inn funksjon
                 System.out.println("Opprette og legge til nye elementer i systemet (deloppgave E4).");
+                System.out.println("Ønsker du å opprette: \n"+ 
+                "(L)ege \n" +
+                "(P)asient \n"+
+                "(R)esept \n"+
+                "(LE)gemiddel \n"+
+                "(Q)uit");
+                System.out.print("Skriv inn oensket kommando: ");  // bare pynt
+                svar = input.next();
+                while(svar != "Q"){
+
+                    if(svar.toLowerCase().compareTo("l") == 0){
+                        System.out.print("(S)pesialist eller (V)anlig: ");
+                        svar = input.next();
+                        if(svar.toLowerCase().compareTo("s") == 0){
+                            System.out.println("Oppgi navn;");
+                            String svar1 = input.next(); 
+                            System.out.println("Oppgi kontrollid");
+                            String svar2 = input.next();
+                            lege nyspes = new spesialist(svar1, svar2);
+                            lege.leggTil(nyspes);
+                        }
+                        else if(svar.toLowerCase().compareTo("v") == 0){
+
+                        }
+
+                        else{
+                            System.out.println("Ugyldig"); break;
+                        }
+                    }
+
+                    else if(svar.toLowerCase().compareTo("p") == 0){
+
+                    }
+
+                    else if(svar.toLowerCase().compareTo("r") == 0){
+
+                    }
+
+                    else if(svar.toLowerCase().compareTo("le") == 0){
+
+                    }
+
+                    else if(svar.toLowerCase().compareTo("q") == 0){
+                        System.out.println("taper"); break;
+
+                    }
+                    else{System.out.println("Du er stygg");}
+                }
             }
             
             else if(svar.toLowerCase().compareTo("b") == 0){
