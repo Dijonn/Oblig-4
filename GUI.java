@@ -87,7 +87,13 @@ public class GUI extends Legesystem{
 
                     //// ny undermeny
                     else if(svar.toLowerCase().compareTo("p") == 0){
-
+                        System.out.println("Pasient: \n");
+                        System.out.println("Oppgi navn;");
+                        String svar1 = input.next(); 
+                        System.out.println("Oppgi foedselsnummer");
+                        String svar2 = input.next();
+                        pasient nyPas = new pasient(svar1, svar2);
+                        pasienter.leggTil(nyPas);
                     }
 
 
