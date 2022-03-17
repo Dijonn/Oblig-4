@@ -4,7 +4,7 @@ abstract class Legemiddel{
     protected int pris;
     final protected double virkestoff;
     protected static int Id = 1;
-    int egenId; 
+    protected int egenId; 
     public String toString(){
         return "navn:" + this.hentNavn() + " pris:" + this.hentPris() + " virkestoff:" + this.hentVirkestoff() + " id:" + this.hentId();
     }
@@ -15,6 +15,7 @@ abstract class Legemiddel{
         this.virkestoff = virkestoff;
         egenId = Id;
         Id++;
+        
     }
     public int hentId(){
         return Id;

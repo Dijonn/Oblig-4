@@ -87,7 +87,7 @@ abstract class Lenkeliste <T> implements Liste<T> {
         //hvis forste ikke er null må vi komme oss til slutten av listen
         //og sette neste variabelen til nest siste element til den nye noden. 
         else{
-            System.out.println("legger til x");
+            
             Node tmp = forste;
             while(tmp.neste != null) {
                 tmp = tmp.neste;
