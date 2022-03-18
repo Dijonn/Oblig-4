@@ -317,7 +317,7 @@ public class GUI extends Legesystem{
                     // Lager legemiddel og legger til i liste
                     else if(svar.toLowerCase().compareTo("le") == 0){
 
-                        System.out.println("(N)arkotsik, (V)anlig eller (VD)nedannende: ");
+                        System.out.print("(N)arkotsik, (V)anlig eller (VD)nedannende: ");
                         svar = input.next();
 
                         if(svar.toLowerCase().compareTo("n") == 0){
@@ -371,7 +371,10 @@ public class GUI extends Legesystem{
                     }
                     
                     // Ikke gyldig input
-                    else{System.out.println("ulovlig input");}
+                    else{
+                        System.out.println("ulovlig input");
+                        PrintSubMeny_DelO();
+                    }
                 }
             }
             
@@ -397,6 +400,7 @@ public class GUI extends Legesystem{
             ////// Logikken når det er ugyldig input
             else{
                 System.out.println("ugyldig input");
+                PrintHovedMeny();
             }
 
             // Denne er her for å gi mellomrom mellom hver iterering av while-loopen. 
