@@ -47,15 +47,22 @@ public class GUI extends Legesystem{
     public static void skrivUtLegerMedNarkotiskResept(){
         
         for(lege x: leger){
+
             Lenkeliste<Resept> reseptListe = x.hentResepter();
+            int antallNarkotiskeResepter = 0;
+            boolean harNarkotiskResept = false;
             
             for(Resept y: reseptListe){
-                int 
+
                 if(y.Legemiddel instanceof Narkotisk){
-                    
+                    antallNarkotiskeResepter++;
+                    harNarkotiskResept = true;
                 }
             }
-            
+
+            if(harNarkotiskResept){
+                System.out.println(x.navn + " antall narkotiske resepter: " + antallNarkotiskeResepter);
+            }
         }
     }
     //Printer ut submenyen til brukergensesnittet
