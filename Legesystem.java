@@ -64,6 +64,7 @@ public class Legesystem {
                     }
                 }
                 else if(hashtagTeller == 5){
+                    
                     //System.out.println("resept");
                     lege storLege = null;
                     for(lege x:leger){
@@ -71,25 +72,50 @@ public class Legesystem {
                             storLege = x;
                         }
                     }
+
                     if(deler[3].compareTo("hvit") == 0 ){
-                        hvitResept nyhvit = new hvitResept(storLege, Integer.parseInt(deler[4]), legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
-                        resept.leggTil(nyhvit);
+                        try{
+                            storLege.skrivHvitResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                        }
+                        
+                        catch (Exception UlovligUtskrift){
+                            System.out.println("Ikke lov å skriv resept.\n");
+                        }
                     }
+                    
                     else if(deler[3].compareTo("blaa") == 0 ){
-                        blaaResept nyblaa = new blaaResept(storLege, Integer.parseInt(deler[4]), legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
-                        resept.leggTil(nyblaa);
+                        
+                        try{
+                            storLege.skrivBlaaResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                        }
+                        
+                        catch (Exception UlovligUtskrift){
+                            System.out.println("Ikke lov å skriv resept.\n");
+                        }
+                        
                     }
 
                     else if(deler[3].compareTo("militaer") == 0 ){
-                        MilitaerResept nymil = new MilitaerResept(storLege, legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
-                        resept.leggTil(nymil);
+                        try{
+                            storLege.skrivMilResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
+                        }
+                        
+                        catch (Exception UlovligUtskrift){
+                            System.out.println("Ikke lov å skriv resept.\n");
+                        }
                     }
 
                     else if(deler[3].compareTo("p") == 0 ){
-                        pResept nyP = new pResept(storLege, Integer.parseInt(deler[4]), legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
-                        resept.leggTil(nyP);
+                        try{
+                            storLege.skrivPResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                        }
+                        
+                        catch (Exception UlovligUtskrift){
+                            System.out.println("Ikke lov å skriv resept.\n");
+                        }
                     }
-                    else{System.out.println("hie");}
+
+                    else{System.out.println("Ulovlig input");}
 
                 }
                
