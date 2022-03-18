@@ -7,4 +7,8 @@ class Vanlig extends Legemiddel{
     public String toString(){
         return super.toString();
     }
+
+    public int prisAaBetale(){
+        return this.pris;
+    }
 }
