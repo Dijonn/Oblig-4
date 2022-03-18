@@ -433,7 +433,7 @@ public class GUI extends Legesystem{
                 System.out.println("Hvilken pasient vil du se resepter for?");
                 int teller = 0;
                 for(pasient x : pasienter){
-                    System.out.println(teller+": " + x);
+                    System.out.println(teller+": " + x.navn + "(fnr "+x.foedselsnummmer+")");
                     teller ++;
                 }
 
@@ -442,7 +442,7 @@ public class GUI extends Legesystem{
                 int svarPasient = input.nextInt();
                 pasient pasientObjekt = resept.hent(svarPasient).pasient;
 
-                System.out.println("Valgt pasient: " + pasientObjekt);
+                System.out.println("Valgt pasient: " + pasientObjekt.navn + " (fnr "+pasientObjekt.foedselsnummmer+")");
 
 
 
@@ -461,7 +461,7 @@ public class GUI extends Legesystem{
                 System.out.println("Hvilken resept vil du bruke?");
                 int reseptTeller = 0;
                 for(Resept x : pasientensResepter){
-                    System.out.println(reseptTeller+": " + x);
+                    System.out.println(reseptTeller+": " + x.hentLegemiddel() + " (fnr " + x.hentReit()+")");
                     teller++;
                 }
 
@@ -469,9 +469,25 @@ public class GUI extends Legesystem{
                 //Velger resept ut ifra indeks fra teller og bruker metoden "bruk"
                 int svarResept = input.nextInt();
                 Resept reseptObjekt = resept.hent(svarResept);
-                reseptObjekt.bruk();
+                
+                if(reseptObjekt.reit == 0){
+                    System.out.println("Kunne ikke bruke resept. Ingen reit igjen.");
+                    break;
+                }
+                
+                
+                else{
+                    reseptObjekt.bruk();
+                    System.out.println("Reit etter bruk: " + reseptObjekt.reit);
+                    break;
+                }
             }
             
+
+
+
+
+
             ////// Logikken for å printe ut forskjellige former for statistikk
             else if(svar.toLowerCase().compareTo("p") == 0){
                 //ikke lagt inn funksjon
