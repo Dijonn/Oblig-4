@@ -8,7 +8,7 @@ abstract class Resept{
     protected int Pris;
     protected String farge;
     protected int Id_resept;
-    protected  pasient pasient;
+    protected pasient pasient;
     
     
     Resept( lege ansvarligLege, int reit, Legemiddel Legemiddel, pasient pasient){

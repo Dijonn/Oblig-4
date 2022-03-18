@@ -6,7 +6,7 @@ public class Legesystem {
 
     static IndeksertListe<pasient> pasienter = new IndeksertListe<>();
     static IndeksertListe<Legemiddel> legemiddelListe = new IndeksertListe<>();
-    static IndeksertListe<lege> leger = new IndeksertListe<>();
+    static Prioritetskoe<lege> leger = new Prioritetskoe<>();
     static IndeksertListe<Resept> resept = new IndeksertListe<>();
 
     public void lesFraFil(String fil) throws FileNotFoundException{
@@ -129,19 +129,6 @@ public class Legesystem {
                 }
 
             }
-        }
-        for(pasient x: pasienter){
-            System.out.println(x);
-        }
-        for(lege x : leger){
-            System.out.println(x);
-        }
-       
-        for(Legemiddel x : legemiddelListe){
-            System.out.println(x);
-        }
-        for(Resept x: resept){
-            System.out.println(x);
         }
 
         leser.close();
