@@ -13,4 +13,8 @@ class Narkotisk extends Legemiddel{
     public int hentNarkotiskStyrke(){
         return this.narkotiskStyrke;
     }
+
+    public int prisAaBetale(){
+        return this.pris;
+    }
 }
