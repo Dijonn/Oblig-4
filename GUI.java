@@ -469,25 +469,21 @@ public class GUI extends Legesystem{
                 int reseptTeller = 0;
                 for(Resept x : pasientensResepter){
                     System.out.println(reseptTeller+": " + x.hentLegemiddel() + " (fnr " + x.hentReit()+")");
-                    teller++;
+                    reseptTeller++;
                 }
-
 
                 //Velger resept ut ifra indeks fra teller og bruker metoden "bruk"
                 int svarResept = input.nextInt();
-                Resept reseptObjekt = resept.hent(svarResept);
-                
-                if(reseptObjekt.reit == 0){
-                    System.out.println("Kunne ikke bruke resept. Ingen reit igjen.");
-                    break;
+                Resept reseptObjekt = pasientensResepter.hent(svarResept);
+                if(reseptObjekt.reit >= 1){
+                    reseptObjekt.reit--;
+                    System.out.println("Antall reit etter bruk: "+ reseptObjekt.reit);
                 }
-                
-                
+
                 else{
-                    reseptObjekt.bruk();
-                    System.out.println("Reit etter bruk: " + reseptObjekt.reit);
-                    break;
+                    System.out.println("Ingen flere reit igjen");
                 }
+                
             }
             
 

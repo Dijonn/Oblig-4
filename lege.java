@@ -1,3 +1,5 @@
+import javax.print.attribute.standard.PagesPerMinuteColor;
+
 //Klasse lege som sammenligner og holder data om leger
 
 class lege implements Comparable<lege> {
@@ -61,6 +63,17 @@ class lege implements Comparable<lege> {
         blaaResept blaa = new blaaResept(this, reit, legemiddel, pasient);
         utskrevneResepter.leggTil(blaa);
         return blaa;
+    }
+    
+    
+    for(pasienter p: pasienter){
+        antallForDennePasient = 0;
+        for(resept x : resepter)
+            if(x.pasient instanceof p && Narkotisk){
+                antallForDennePasient++
+
+        }
+        leggtiliList
     }
 }
 
