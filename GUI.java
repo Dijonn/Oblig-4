@@ -1,4 +1,3 @@
- import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class GUI extends Legesystem{
     
@@ -46,7 +45,7 @@ public class GUI extends Legesystem{
     }
 
     public static void skrivUtLegerMedNarkotiskResept(){
-
+        
         for(lege x: leger){
 
             Lenkeliste<Resept> reseptListe = x.hentResepter();
@@ -62,7 +61,7 @@ public class GUI extends Legesystem{
             }
 
             if(harNarkotiskResept){
-                System.out.println(x.navn + " antall resepter: " + antallNarkotiskeResepter);
+                System.out.println(x.navn + " antall narkotiske resepter: " + antallNarkotiskeResepter);
             }
 
         }
@@ -71,9 +70,16 @@ public class GUI extends Legesystem{
     //Metode som skriver ut pasiener som har narkotisk resept, og hvor mange de har, ikke komplett. 
     public static void skrivPasienterMedNarkotiskResept(){
 
-        for(Resept x : resept){
-            if(x.Legemiddel instanceof Narkotisk){
-                System.out.println(x.pasient.navn);
+        for(lege x: leger){
+
+            Lenkeliste<Resept> reseptListe = x.hentResepter();
+            int antallNarkotiskeResepter = 0;
+            boolean harNarkotiskResept = false;
+
+            for(Resept y: reseptListe){
+                if(y.Legemiddel instanceof Narkotisk){
+                    System.out.println(y.pasient.navn);
+                }
             }
         }
     }
@@ -87,7 +93,7 @@ public class GUI extends Legesystem{
             "(P)asient \n"+
             "(R)esept \n"+
             "(LE)gemiddel \n"+
-            "(Q)uit til hovedmeny\n");
+            "(Q)uit til hovedmeny");
             }
 
     // Sjekker om oppgitt lege, legemiddel og pasient er i listene. 
@@ -151,16 +157,6 @@ public class GUI extends Legesystem{
 
 
     public static void main(String[] args) {
-
-        Legesystem ny  = new Legesystem();
-        
-        try {
-            ny.lesFraFil("legedata.txt");
-        } 
-        
-        catch (FileNotFoundException e) {
-            System.out.println("fil finnes ikke");
-        }
 
         String svar = "";
         Scanner input = new Scanner(System.in);
@@ -520,7 +516,7 @@ public class GUI extends Legesystem{
 
 
 
-            // E6 E6 E6 E6 E6 E6 
+
             ////// Logikken for å printe ut forskjellige former for statistikk
             else if(svar.toLowerCase().compareTo("p") == 0){
                 System.out.print(
@@ -528,21 +524,20 @@ public class GUI extends Legesystem{
                     "(N)arkotiske legemidler antall\n"+
                     "(L)eger som har skrevet narkotiske legemidler\n"+
                     "(P)asienter med gyldig narkotisk resept\n"+
-                    "(Q)uit submeny\n"
+                    "(Q)uit submeny\n"+
+                    "Skriv inn oensket kommando: "
                 );
                         
                 // Har ansvaret for å 
                 while( svar != "q"){
-                    
-                    System.out.print("Skriv inn oensket kommando: ");
                     svar = input.next();
 
                     if(svar.toLowerCase().compareTo("v") == 0){
-                        System.out.println(skrivUtVanedannendeAntall() + " vanedannende legemidler");
+                        System.out.println(skrivUtVanedannendeAntall());
                     }
 
                     else if(svar.toLowerCase().compareTo("n") == 0){
-                        System.out.println(skrivUtNarkotiskAntall() + " narkotiske legemidler");
+                        System.out.println(skrivUtNarkotiskAntall());
                     }
 
                     else if(svar.toLowerCase().compareTo("l")==0){
@@ -561,7 +556,7 @@ public class GUI extends Legesystem{
                     else{
                         System.out.println("Ulovlig input\n");
                     }
-
+                    
                 }
             }
             
