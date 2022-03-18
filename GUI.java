@@ -380,9 +380,50 @@ public class GUI extends Legesystem{
             
             
             ////// Logikken for å bruke en resept fra listen til en pasient
+            // E5 E5 E5 E5 E5 - BRUK AV RESEPT
             else if(svar.toLowerCase().compareTo("b") == 0){
-                //ikke lagt inn funksjon
-                System.out.println("Bruke en gitt resept fra listen til en pasient (deloppgave E5).");
+
+                //Skriver ut pasienter
+                System.out.println("Hvilken pasient vil du se resepter for?");
+                int teller = 0;
+                for(pasient x : pasienter){
+                    System.out.println(teller+": " + x);
+                    teller ++;
+                }
+
+
+                //Henter ønsket pasient ut i fra indeks gitt av teller.
+                int svarPasient = input.nextInt();
+                pasient pasientObjekt = resept.hent(svarPasient).pasient;
+
+                System.out.println("Valgt pasient: " + pasientObjekt);
+
+
+
+                //Ny liste til for resepter til en spesifik pasient
+                IndeksertListe<Resept> pasientensResepter = new IndeksertListe<>();
+
+
+                // Iterer igjennom resept listen som tilhører pasienten.
+                for(Resept r : resept){
+                    if(r.pasient == pasientObjekt);
+                    pasientensResepter.leggTil(r);
+                }
+
+
+                // Skriver ut resepter
+                System.out.println("Hvilken resept vil du bruke?");
+                int reseptTeller = 0;
+                for(Resept x : pasientensResepter){
+                    System.out.println(reseptTeller+": " + x);
+                    teller++;
+                }
+
+
+                //Velger resept ut ifra indeks fra teller og bruker metoden "bruk"
+                int svarResept = input.nextInt();
+                Resept reseptObjekt = resept.hent(svarResept);
+                reseptObjekt.bruk();
             }
             
             ////// Logikken for å printe ut forskjellige former for statistikk
