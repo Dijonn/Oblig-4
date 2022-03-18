@@ -29,21 +29,21 @@ public class GUI extends Legesystem{
         
         for(lege x: leger){
             
-            if(x.navn.compareTo(lege) == 0){
+            if(x.navn.toLowerCase().compareTo(lege.toLowerCase()) == 0){
                 gyldig = true;
             }
         }
 
         for(Legemiddel x: legemiddelListe){
             
-            if(x.navn.compareTo(legemiddel) == 0){
+            if(x.navn.toLowerCase().compareTo(legemiddel.toLowerCase()) == 0){
                 gyldig = true;
             }
         }
         
         for(pasient x: pasienter){
             
-            if(x.navn.compareTo(pasient) == 0){
+            if(x.navn.toLowerCase().compareTo(pasient.toLowerCase()) == 0){
                 gyldig = true;
             }
         }
