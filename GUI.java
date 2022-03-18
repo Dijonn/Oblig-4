@@ -11,7 +11,53 @@ public class GUI extends Legesystem{
             "(L)age ny fil og skrive alle data til fil \n"+
             "(Q)uit");
     }
+    
+    
+    //for å sjekke antall vanedannende resepter
+    public static int skrivUtVanedannendeAntall(){
 
+        int teller = 0;
+
+        for(lege x : leger){
+            Lenkeliste<Resept> reseptListe = x.hentResepter();
+            for(Resept y: reseptListe){
+                if(y.Legemiddel instanceof Vanedannende){
+                    teller ++;
+                }
+            }
+        }
+        return teller;
+    }
+
+    public static int skrivUtNarkotiskAntall(){
+
+        int teller = 0;
+
+        for(lege x : leger){
+            Lenkeliste<Resept> reseptListe = x.hentResepter();
+            for(Resept y: reseptListe){
+                if(y.Legemiddel instanceof Narkotisk){
+                    teller ++;
+                }
+            }
+        }
+        return teller;
+    }
+
+    public static void skrivUtLegerMedNarkotiskResept(){
+        
+        for(lege x: leger){
+            Lenkeliste<Resept> reseptListe = x.hentResepter();
+            
+            for(Resept y: reseptListe){
+                int 
+                if(y.Legemiddel instanceof Narkotisk){
+                    
+                }
+            }
+            
+        }
+    }
     //Printer ut submenyen til brukergensesnittet
     static void PrintSubMeny_DelO(){
         System.out.println("\nOensker du å opprette: \n"+ 
@@ -451,6 +497,9 @@ public class GUI extends Legesystem{
         for(Resept x : resept){
             System.out.println(x);
         }
+        System.out.println(skrivUtVanedannendeAntall());
+        System.out.println(skrivUtNarkotiskAntall());
+        
     }   
 }
 

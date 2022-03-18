@@ -19,6 +19,10 @@ class lege implements Comparable<lege> {
 
     IndeksertListe<Resept> utskrevneResepter = new IndeksertListe<>();
 
+    public IndeksertListe<Resept> hentResepter(){
+        return utskrevneResepter;
+    }
+
     public void skrivUtResepter() {
         for(Resept x: utskrevneResepter) {
             System.out.println(x);
