@@ -63,8 +63,29 @@ public class GUI extends Legesystem{
             if(harNarkotiskResept){
                 System.out.println(x.navn + " antall narkotiske resepter: " + antallNarkotiskeResepter);
             }
+
         }
     }
+
+    //Metode som skriver ut pasiener som har narkotisk resept, og hvor mange de har, ikke komplett. 
+    public static void skrivPasienterMedNarkotiskResept(){
+
+        for(lege x: leger){
+
+            Lenkeliste<Resept> reseptListe = x.hentResepter();
+            int antallNarkotiskeResepter = 0;
+            boolean harNarkotiskResept = false;
+
+            for(Resept y: reseptListe){
+                if(y.Legemiddel instanceof Narkotisk){
+                    System.out.println(y.pasient.navn);
+                }
+            }
+        }
+    }
+    
+
+
     //Printer ut submenyen til brukergensesnittet
     static void PrintSubMeny_DelO(){
         System.out.println("\nOensker du å opprette: \n"+ 
@@ -162,6 +183,7 @@ public class GUI extends Legesystem{
                 break;
             }
 
+            // E4 E4 E4 E4 E4 E4
             ////// Logikken for å gå inn i submeny for å oprette og legge til nye elementer i systemet
             else if(svar.toLowerCase().compareTo("o") == 0){
                 //ikke lagt inn funksjon
@@ -229,7 +251,7 @@ public class GUI extends Legesystem{
                             "(M)ilitaer resept\n"+
                             "(P) resept\n"+
                             "(Q) gå til forrige meny\n"+
-                            "Skriv oensket kommando, resept"
+                            "Skriv oensket kommando; resept: "
 
                         );
                         
@@ -497,10 +519,50 @@ public class GUI extends Legesystem{
 
             ////// Logikken for å printe ut forskjellige former for statistikk
             else if(svar.toLowerCase().compareTo("p") == 0){
-                //ikke lagt inn funksjon
-                System.out.println("Print ut forskjellige former for statistikk (deloppgave E6).");
+                System.out.print(
+                    "\n(V)anedannende legemidler antall\n"+
+                    "(N)arkotiske legemidler antall\n"+
+                    "(L)eger som har skrevet narkotiske legemidler\n"+
+                    "(P)asienter med gyldig narkotisk resept\n"+
+                    "(Q)uit submeny\n"+
+                    "Skriv inn oensket kommando: "
+                );
+                        
+                // Har ansvaret for å 
+                while( svar != "q"){
+                    svar = input.next();
+
+                    if(svar.toLowerCase().compareTo("v") == 0){
+                        System.out.println(skrivUtVanedannendeAntall());
+                    }
+
+                    else if(svar.toLowerCase().compareTo("n") == 0){
+                        System.out.println(skrivUtNarkotiskAntall());
+                    }
+
+                    else if(svar.toLowerCase().compareTo("l")==0){
+                        skrivUtLegerMedNarkotiskResept();
+                    }
+
+                    else if(svar.toLowerCase().compareTo("p") == 0){
+                        skrivPasienterMedNarkotiskResept();
+                    }
+
+                    else if(svar.toLowerCase().compareTo("q") == 0){
+                        System.out.println("Gaar til forrige meny\n");
+                        break;
+                    }
+
+                    else{
+                        System.out.println("Ulovlig input\n");
+                    }
+                    
+                }
             }
             
+
+
+
             ///// Logikken for å skrive alle data til fil
             else if(svar.toLowerCase().compareTo("l") == 0){
                 //ikke lagt inn funksjon
@@ -520,9 +582,6 @@ public class GUI extends Legesystem{
         for(Resept x : resept){
             System.out.println(x);
         }
-        System.out.println(skrivUtVanedannendeAntall());
-        System.out.println(skrivUtNarkotiskAntall());
-        
     }   
 }
 
