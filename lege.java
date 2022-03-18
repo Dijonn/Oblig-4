@@ -58,20 +58,6 @@ class lege implements Comparable<lege> {
         utskrevneResepter.leggTil(blaa);
         return blaa;
     }
-
-    public static void main(String[] args) throws UlovligUtskrift {
-        lege hans = new lege("Hans");
-        Vanedannende oxy = new Vanedannende("Oxy", 100, 300, 10);
-        pasient dion = new pasient("Dion", "91082");
-        spesialist nico = new spesialist("Nico", "09990");
-        Narkotisk cola = new Narkotisk("Cola", 1200, 10, 10);
-        nico.skrivBlaaResept(cola, dion, 3);
-        hans.skrivMilResept(oxy, dion);
-        hans.skrivHvitResept(oxy, dion, 3);
-        hans.skrivUtResepter();
-        nico.skrivUtResepter();
-        }
-    }
-
+}
 
 

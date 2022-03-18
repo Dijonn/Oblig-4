@@ -197,17 +197,17 @@ public class GUI extends Legesystem{
                                 String pasient = input.next();
                                 System.out.print("Reit: ");
                                 String reit = input.next();
-                                
-                            
-                                if(gyldighet(lege, legemiddel, pasient)){
 
-                                    hvitResept nyHvit = new hvitResept(hentLege(lege), Integer.parseInt(reit), hentLegeMiddel(legemiddel), hentPasient(pasient));
-                                    resept.leggTil(nyHvit);
-                                    break;
+                                try {
+                                    if(gyldighet(lege, legemiddel, pasient)){
+                                        Resept l = hentLege(lege).skrivHvitResept(hentLegeMiddel(legemiddel), hentPasient(pasient) , Integer.parseInt(reit));
+                                        resept.leggTil(l);
+                                        break;
+                                    }
                                 }
 
-                                else{
-                                    System.out.println("din informasjon er ikke lovlig");
+                                catch (Exception UlovligUtskrift) {
+                                    System.out.println("\nulovlig resept, proev igjen");
                                     break;
                                 }
                             } 
@@ -227,15 +227,16 @@ public class GUI extends Legesystem{
                                 String reit = input.next();
                                 
                             
-                                if(gyldighet(lege, legemiddel, pasient)){
-
-                                    blaaResept nyBlaa = new blaaResept(hentLege(lege), Integer.parseInt(reit), hentLegeMiddel(legemiddel), hentPasient(pasient));
-                                    resept.leggTil(nyBlaa);
-                                    break;
+                                try {
+                                    if(gyldighet(lege, legemiddel, pasient)){
+                                        Resept l = hentLege(lege).skrivBlaaResept(hentLegeMiddel(legemiddel), hentPasient(pasient) , Integer.parseInt(reit));
+                                        resept.leggTil(l);
+                                        break;
+                                    }
                                 }
 
-                                else{
-                                    System.out.println("din informasjon er ikke lovlig");
+                                catch (Exception UlovligUtskrift) {
+                                    System.out.println("\nulovlig resept, proev igjen");
                                     break;
                                 }
 
@@ -253,15 +254,16 @@ public class GUI extends Legesystem{
                                 System.out.print("Pasient: ");
                                 String pasient = input.next();                            
                             
-                                if(gyldighet(lege, legemiddel, pasient)){
-
-                                    MilitaerResept nyMil = new MilitaerResept(hentLege(lege), hentLegeMiddel(legemiddel), hentPasient(pasient));
-                                    resept.leggTil(nyMil);
-                                    break;
+                                try {
+                                    if(gyldighet(lege, legemiddel, pasient)){
+                                        Resept l = hentLege(lege).skrivMilResept(hentLegeMiddel(legemiddel), hentPasient(pasient));
+                                        resept.leggTil(l);
+                                        break;
+                                    }
                                 }
 
-                                else{
-                                    System.out.println("din informasjon er ikke lovlig");
+                                catch (Exception UlovligUtskrift) {
+                                    System.out.println("\nulovlig resept, proev igjen");
                                     break;
                                 }
 
@@ -282,15 +284,16 @@ public class GUI extends Legesystem{
                                 String reit = input.next();
                                 
                             
-                                if(gyldighet(lege, legemiddel, pasient)){
-
-                                    pResept nyP = new pResept(hentLege(lege), Integer.parseInt(reit), hentLegeMiddel(legemiddel), hentPasient(pasient));
-                                    resept.leggTil(nyP);
-                                    break;
+                                try {
+                                    if(gyldighet(lege, legemiddel, pasient)){
+                                        Resept l = hentLege(lege).skrivPResept(hentLegeMiddel(legemiddel), hentPasient(pasient) , Integer.parseInt(reit));
+                                        resept.leggTil(l);
+                                        break;
+                                    }
                                 }
 
-                                else{
-                                    System.out.println("din informasjon er ikke lovlig");
+                                catch (Exception UlovligUtskrift) {
+                                    System.out.println("\nulovlig resept, proev igjen");
                                     break;
                                 }
                             }
@@ -405,4 +408,5 @@ public class GUI extends Legesystem{
         }
     }   
 }
+
 
