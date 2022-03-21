@@ -15,4 +15,8 @@ class Vanlig extends Legemiddel{
     public String hentType(){
         return "vanlig";
     }
+
+    public int hentStyrke(){
+        return 0;
+    }
 }

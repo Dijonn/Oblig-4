@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.FileWriter;
+import java.io.IOException;
 public class GUI extends Legesystem{
     
     //Printer ut hovedmenyen til brukergensesnittet
@@ -68,6 +69,59 @@ public class GUI extends Legesystem{
         }
     }
 
+    public static void skrivTilFil() throws IOException{
+        FileWriter skriver = new FileWriter("nyFil.txt");
+
+
+                skriver.write("# Pasient (navn, fnr)\n");
+                for(pasient x : pasienter){
+                    skriver.write(x.navn + "," + x.foedselsnummmer + "\n");
+                }
+
+                skriver.write("# Legemiddel (navn,type,pris,virkestoff,[styrke])\n");
+                for(Legemiddel x : legemiddelListe){
+                    if(x instanceof Narkotisk){
+                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff + "," + x.hentStyrke() + "\n");
+                    }
+                    else if(x instanceof Vanedannende){
+                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff + "," + x.hentStyrke() + "\n");
+                    }
+                    else{
+                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff + "\n");
+                    }
+                }
+
+
+                skriver.write("# Leger (navn, kontrollid / 0 hvis vanlig lege)\n");
+                    for(lege x : leger){
+                        if(x instanceof spesialist){
+                            skriver.write(x.navn + ", " + x.hentKontrollId() + "\n");
+                        }
+                        else{
+                            skriver.write(x.navn+ "," + x.hentKontrollId() + "\n");
+                        }
+                    }
+
+                skriver.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit])\n");
+                for(Resept x : resept){
+                    if(x instanceof blaaResept){
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege.hentNavn() + "," + x.pasient.id + "," + x.farge + "," + x.reit + "\n");
+                    }
+                    else if(x instanceof hvitResept){
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege.hentNavn() + "," + x.pasient.id + "," + x.farge + "," + x.reit + "\n");
+                    }
+                    else if(x instanceof pResept){
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege.hentNavn() + "," + x.pasient.id + "," + x.farge + "," + x.reit + "\n");
+                    }
+                    else{
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege.hentNavn() + "," + x.pasient.id + "," + x.farge + "\n");
+                    }
+                }
+                skriver.close();
+            }
+        
+    
+
     //Metode som skriver ut pasiener som har narkotisk resept, og hvor mange de har, ikke komplett. 
     public static void skrivPasienterMedNarkotiskResept(){
 
@@ -81,14 +135,6 @@ public class GUI extends Legesystem{
                 if(y.Legemiddel instanceof Narkotisk){
                     System.out.println(y.pasient.navn);
                 }
-            }
-            for(pasienter p: pasienter){
-            antallForDennePasient = 0;
-            for(resept x : resepter)
-                if(x.pasient instanceof p && Narkotisk){
-                    antallForDennePasient++
-                }
-            leggtiliList
             }
         }
     }
@@ -576,48 +622,13 @@ public class GUI extends Legesystem{
             else if(svar.toLowerCase().compareTo("l") == 0){
                 //ikke lagt inn funksjon
                 System.out.println("Skrive alle data til fil (deloppgave E7).");
-                FileWriter skriver = new FileWriter("nyFil.txt");
-                skriver.write("# Pasient (navn, fnr)");
-                for(pasient x : pasienter){
-                    skriver.write(x.navn + "," + x.foedselsnummmer);
-                }
-                skriver.write("# Legemiddel (navn,type,pris,virkestoff,[styrke])");
-                for(Legemiddel x : legemiddelListe){
-                    if(x instanceof Narkotisk){
-                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff + "," + x.hentNarkotiskStyrke());
-                    }
-                    else if(x instanceof Vanedannende){
-                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff + "," + x.hentVaneStyrke());
-                    }
-                    else{
-                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff);
-                    }
-                }
-                skriver.write("# Leger (navn, kontrollid / 0 hvis vanlig lege)");
-                for(lege x : leger){
-                    if(x instanceof spesialist){
-                        skriver.write(x.navn + "," + x.kontrollid);
-                    }
-                    else{
-                        skriver.write(x.navn + "," + 0);
-                    }
-                }
-                skriver.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit]");
-                for(Resept x : resept){
-                    if(x instanceof blaaResept){
-                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge + "," + x.reit);
-                    }
-                    else if(x instanceof hvitResept){
-                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge + "," + x.reit);
-                    }
-                    else if(x instanceof pResept){
-                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge + "," + x.reit);
-                    }
-                    else{
-                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge);
-                    }
+                try {
+                    skrivTilFil();
+                } catch (IOException e) {
+                    System.out.println("Ugyldig");
                 }
             }
+                
 
             ////// Logikken når det er ugyldig input
             else{

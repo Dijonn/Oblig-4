@@ -34,4 +34,4 @@ abstract class Legemiddel{
     }
 
     abstract public String hentType();
-}
+    abstract public int hentStyrke();}
