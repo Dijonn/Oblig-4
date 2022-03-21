@@ -7,7 +7,7 @@ public class GUI extends Legesystem{
     //Printer ut hovedmenyen til brukergensesnittet
     public static void PrintHovedMeny(){
         System.out.println(
-            "(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
+            "\n(S)krive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter\n" +
             "(O)pprette og legge til nye elementer i systemet \n" +
             "(B)ruke en gitt resept fra listen til en pasient \n" +
             "(P)rint ut forskjellige former for statistikk \n" +
@@ -285,19 +285,20 @@ public class GUI extends Legesystem{
 
                     System.out.print("Skriv inn oensket kommando, submeny O: ");  // bare pynt
                     svar = input.next();
+                    input.nextLine();
 
 
                     //LEGE LEGE LEGE LEGE LEGE
                     // Lager lege og legger til i liste
                     if(svar.toLowerCase().compareTo("l") == 0){
                         System.out.print("(S)pesialist eller (V)anlig: ");
-                        svar = input.next();
+                        svar = input.nextLine();
                         if(svar.toLowerCase().compareTo("s") == 0){
                             System.out.println("Lager spesialist");
                             System.out.print("\nOppgi navn: ");
-                            String svar1 = input.next(); 
+                            String svar1 = input.nextLine(); 
                             System.out.print("\nOppgi kontrollid: ");
-                            String svar2 = input.next();
+                            String svar2 = input.nextLine();
                             spesialist nySpes = new spesialist(svar1, svar2);
                             leger.leggTil(nySpes);
                         }
@@ -305,7 +306,7 @@ public class GUI extends Legesystem{
                         else if(svar.toLowerCase().compareTo("v") == 0){
                             System.out.println("Lager vanlig lege");
                             System.out.print("\nOppgi navn: ");
-                            String svar1 = input.next();
+                            String svar1 = input.nextLine();
                             lege nyLege = new lege(svar1);
                             leger.leggTil(nyLege);
                         }
@@ -323,9 +324,9 @@ public class GUI extends Legesystem{
                     else if(svar.toLowerCase().compareTo("p") == 0){
                         System.out.print("\nLager ny pasient");
                         System.out.print("\nOppgi navn: ");
-                        String svar1 = input.next(); 
-                        System.out.println("\nOppgi foedselsnummer: ");
-                        String svar2 = input.next();
+                        String svar1 = input.nextLine(); 
+                        System.out.print("\nOppgi foedselsnummer: ");
+                        String svar2 = input.nextLine();
                         pasient nyPas = new pasient(svar1, svar2);
                         pasienter.leggTil(nyPas);
                     }
@@ -492,6 +493,7 @@ public class GUI extends Legesystem{
 
                         System.out.print("(N)arkotsik, (V)anlig eller (VD)nedannende (Q)uit: ");
                         svar = input.next();
+                        input.nextLine();
 
                         if(svar.toLowerCase().compareTo("n") == 0){
                             System.out.println("Lager nytt legemiddel");
