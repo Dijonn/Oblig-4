@@ -560,63 +560,65 @@ public class GUI extends Legesystem{
             else if(svar.toLowerCase().compareTo("b") == 0){
 
                 //Skriver ut pasienter
-                System.out.println("Hvilken pasient vil du se resepter for?");
+                System.out.println("\n\nHvilken pasient vil du se resepter for?");
                 int teller = 0;
+                
                 for(pasient x : pasienter){
                     System.out.println(teller+": " + x.navn + "(fnr "+x.foedselsnummmer+")");
                     teller ++;
                 }
 
-
-                //Henter ønsket pasient ut i fra indeks gitt av teller.
-                int svarPasient = input.nextInt();
-                pasient pasientObjekt = resept.hent(svarPasient).pasient;
-
-                System.out.println("Valgt pasient: " + pasientObjekt.navn + " (fnr "+pasientObjekt.foedselsnummmer+")");
-
-
-
-                //Ny liste til for resepter til en spesifik pasient
-                IndeksertListe<Resept> pasientensResepter = new IndeksertListe<>();
-
-
-                // Iterer igjennom resept listen som tilhører pasienten.
-                for(Resept r : resept){
-                    if(r.pasient == pasientObjekt);
-                    pasientensResepter.leggTil(r);
-                }
-
-
-                // Skriver ut resepter
-                System.out.println("Hvilken resept vil du bruke?");
-                int reseptTeller = 0;
-                for(Resept x : pasientensResepter){
-                    System.out.println(reseptTeller+": " + x.hentLegemiddel() + " (fnr " + x.hentReit()+")");
-                    teller++;
-                }
-
-
-                //Velger resept ut ifra indeks fra teller og bruker metoden "bruk"
-                int svarResept = input.nextInt();
-                Resept reseptObjekt = resept.hent(svarResept);
+                System.out.print("Skriv pasientNr: ");
+                int Pasient_svar = input.nextInt();
+                pasient valgt = pasienter.hent(Pasient_svar);
                 
-                if(reseptObjekt.reit == 0){
-                    System.out.println("Kunne ikke bruke resept. Ingen reit igjen.");
-                    break;
-                }
-                
-                
-                else{
-                    reseptObjekt.bruk();
-                    System.out.println("Reit etter bruk: " + reseptObjekt.reit);
-                    break;
+                for(pasient p : pasienter){
+                    int legemiddelTeller = 0; 
+                    IndeksertListe<Resept> pasientensResepter = new IndeksertListe<>();
+
+                    if(p.equals(valgt)){
+                        
+                        for (Resept r: resept){
+                            
+                            if(r.pasient.equals(valgt) ){
+                                pasientensResepter.leggTil(legemiddelTeller, r);
+                                legemiddelTeller++;
+                            }
+    
+                        }
+                        
+                        legemiddelTeller = 0;
+                        
+                        for(Resept y: pasientensResepter){
+                            
+                            System.out.println("\nReseptNr: " + legemiddelTeller + ": " + y.Legemiddel.navn + " (" + y.reit + " reit)");
+                            legemiddelTeller++;
+
+                        }
+
+                        if(pasientensResepter.stoerrelse() > 0){
+                            System.out.print("\nSkriv inn resepten du vil bruke: ");
+                            int resept_som_skal_brukes = input.nextInt();
+                            Resept tmp = pasientensResepter.hent(resept_som_skal_brukes);
+                            
+                            if(tmp.reit > 0){
+                                tmp.bruk();
+                                System.out.println("\nReit etter bruk: " + tmp.reit);
+                            }
+                            else if(tmp.reit == 0){
+                                System.out.println("Resepten er utbrukt");
+                            }
+                            
+                        }
+
+                        else{
+                            System.out.println("Pasienten har ingen resepter. ");
+                        }
+                    }
                 }
             }
             
-
-
-
-
+            // SLUTT SLUTT SLUTT 
 
             ////// Logikken for å printe ut forskjellige former for statistikk
             else if(svar.toLowerCase().compareTo("p") == 0) {
@@ -689,9 +691,7 @@ public class GUI extends Legesystem{
         }
         input.close();
         
-        for(Resept x : resept){
-            System.out.println(x);
-        }
+        
     }   
 }
 
