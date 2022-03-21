@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.FileWriter;
+import java.io.FileWriter;
 public class GUI extends Legesystem{
     
     //Printer ut hovedmenyen til brukergensesnittet
