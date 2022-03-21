@@ -3,7 +3,8 @@ public class pasient {
     protected String foedselsnummmer;
     static protected int idteller; 
     protected int id;
-
+    public IndeksertListe<Resept> pasientensResepter = new IndeksertListe<>();
+    
     public pasient(String navn, String foedselsnummer){
         this.navn = navn;
         this.foedselsnummmer = foedselsnummer;

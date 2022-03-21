@@ -38,7 +38,7 @@ abstract class Resept{
         return "ReseptID:" + this.hentReseptId(resept) + "\n Ansvarlig lege:" + this.hentAnsvarligLege() + "\n PasientID:" + this.hentPasientId() + "\n Reit:" + this.hentReit();
     } */
     public boolean bruk(){
-        if(this.reit>1){
+        if(this.reit>=1){
             this.reit -=1;
             return true;
         }

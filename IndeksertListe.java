@@ -58,7 +58,7 @@ public class IndeksertListe<T> extends Lenkeliste<T> {
 
         while(tmp != null){
             
-            //legger inn +1 siden listen igjen ikke 
+            
             if(peker == posisjon){
                 return tmp.hentData();
             }
