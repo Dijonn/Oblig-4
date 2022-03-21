@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class GUI extends Legesystem{
+public class GUI extends Legesystem {
     
     //Printer ut hovedmenyen til brukergensesnittet
     public static void PrintHovedMeny(){
@@ -158,6 +158,15 @@ public class GUI extends Legesystem{
 
     public static void main(String[] args) {
 
+        Legesystem test = new Legesystem();
+        
+        try {
+            test.lesFraFil("legedata.txt");
+        } catch (Exception e) {
+            System.out.println(" ikjje noe som kommer ut her... ");
+        }
+
+
         String svar = "";
         Scanner input = new Scanner(System.in);
         
@@ -258,6 +267,8 @@ public class GUI extends Legesystem{
                         //KAN DANNE ALLE DE FORSKJELLIGE RESEPTENE OG LEGGE TIL I RESEPTLISTEN
                         while( svar != "q"){
                             svar = input.next();
+                            //Trenger denne linjen for at ikke første linje med input skal bli hoppet over
+                            input.nextLine();
                             
                             // LAGER HVIT RESEPT OG LEGGER I LISTE
                             if(svar.toLowerCase().compareTo("h") == 0){
@@ -265,13 +276,13 @@ public class GUI extends Legesystem{
                                 // Ta inn nodvendig input
                                 System.out.println("Lager hvit resept.");
                                 System.out.print("Ansvarlig lege: ");
-                                String lege = input.next();
+                                String lege = input.nextLine();
                                 System.out.print("Legemiddel: ");
-                                String legemiddel = input.next();
+                                String legemiddel = input.nextLine();
                                 System.out.print("Pasient: ");
-                                String pasient = input.next();
+                                String pasient = input.nextLine();
                                 System.out.print("Reit: ");
-                                String reit = input.next();
+                                String reit = input.nextLine();
 
                                 try {
                                     if(gyldighet(lege, legemiddel, pasient)){
@@ -292,15 +303,18 @@ public class GUI extends Legesystem{
                                 
                                 // Ta inn nodvendig input
                                 System.out.println("Lager blaa resept.");
-                                System.out.print("Ansvarlig lege: ");
-                                String lege = input.next();
-                                System.out.print("Legemiddel: ");
-                                String legemiddel = input.next();
-                                System.out.print("Pasient: ");
-                                String pasient = input.next();
-                                System.out.print("Reit: ");
-                                String reit = input.next();
                                 
+                                System.out.print("Ansvarlig lege: ");
+                                String lege = input.nextLine();
+                                
+                                System.out.print("Legemiddel: ");
+                                String legemiddel = input.nextLine();
+                                
+                                System.out.print("Pasient: ");
+                                String pasient = input.nextLine();
+                                
+                                System.out.print("Reit: ");
+                                String reit = input.nextLine();
                             
                                 try {
                                     if(gyldighet(lege, legemiddel, pasient)){
@@ -311,7 +325,7 @@ public class GUI extends Legesystem{
                                 }
 
                                 catch (Exception UlovligUtskrift) {
-                                    System.out.println("\nulovlig resept, proev igjen");
+                                    System.out.println("\nUlovlig resept, proev igjen");
                                     break;
                                 }
 
@@ -323,12 +337,14 @@ public class GUI extends Legesystem{
                                 // Ta inn nodvendig input
                                 System.out.println("Lager militaer-resept.");
                                 System.out.print("Ansvarlig lege: ");
-                                String lege = input.next();
+                                String lege = input.nextLine();
+                                
                                 System.out.print("Legemiddel: ");
-                                String legemiddel = input.next();
+                                String legemiddel = input.nextLine();
+                        
                                 System.out.print("Pasient: ");
-                                String pasient = input.next();                            
-                            
+                                String pasient = input.nextLine();
+
                                 try {
                                     if(gyldighet(lege, legemiddel, pasient)){
                                         Resept l = hentLege(lege).skrivMilResept(hentLegeMiddel(legemiddel), hentPasient(pasient));
@@ -350,13 +366,13 @@ public class GUI extends Legesystem{
                                 // Ta inn nodvendig input
                                 System.out.println("Lager pResept.");
                                 System.out.print("Ansvarlig lege: ");
-                                String lege = input.next();
+                                String lege = input.nextLine();
                                 System.out.print("Legemiddel: ");
-                                String legemiddel = input.next();
+                                String legemiddel = input.nextLine();
                                 System.out.print("Pasient: ");
-                                String pasient = input.next();
+                                String pasient = input.nextLine();
                                 System.out.print("Reit: ");
-                                String reit = input.next();
+                                String reit = input.nextLine();
                                 
                             
                                 try {
@@ -518,18 +534,21 @@ public class GUI extends Legesystem{
 
 
             ////// Logikken for å printe ut forskjellige former for statistikk
-            else if(svar.toLowerCase().compareTo("p") == 0){
-                System.out.print(
-                    "\n(V)anedannende legemidler antall\n"+
-                    "(N)arkotiske legemidler antall\n"+
+            else if(svar.toLowerCase().compareTo("p") == 0) {
+                
+                        
+                // Har ansvaret for å 
+                while( svar != "q") {
+                    
+                    System.out.print(
+                    "\n(V)anedannende legemiddelresepter\n"+
+                    "(N)arkotiske legemiddelresepter\n"+
                     "(L)eger som har skrevet narkotiske legemidler\n"+
                     "(P)asienter med gyldig narkotisk resept\n"+
                     "(Q)uit submeny\n"+
                     "Skriv inn oensket kommando: "
                 );
-                        
-                // Har ansvaret for å 
-                while( svar != "q"){
+                    
                     svar = input.next();
 
                     if(svar.toLowerCase().compareTo("v") == 0){
@@ -564,7 +583,7 @@ public class GUI extends Legesystem{
 
 
             ///// Logikken for å skrive alle data til fil
-            else if(svar.toLowerCase().compareTo("l") == 0){
+            /* else if(svar.toLowerCase().compareTo("l") == 0){
                 //ikke lagt inn funksjon
                 System.out.println("Skrive alle data til fil (deloppgave E7).");
                 FileWriter skriver = new FileWriter("nyFil.txt");
@@ -580,11 +599,12 @@ public class GUI extends Legesystem{
                 for(lege x : leger){
                     skriver.write(x.navn + "," + x.kontrollid);
                 }
+
                 skriver.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit]");
                 for(Resept x : resept){
-                    skriver.write(x.navn + "," + x.kontrollid);
+                    skriver.write(x.pasient.navn + "," + x.kontrollid);
                 }
-            }
+            } */
 
             ////// Logikken når det er ugyldig input
             else{
@@ -596,6 +616,7 @@ public class GUI extends Legesystem{
             System.out.println("\n");
         }
         input.close();
+        
         for(Resept x : resept){
             System.out.println(x);
         }
