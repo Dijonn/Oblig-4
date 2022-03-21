@@ -567,6 +567,23 @@ public class GUI extends Legesystem{
             else if(svar.toLowerCase().compareTo("l") == 0){
                 //ikke lagt inn funksjon
                 System.out.println("Skrive alle data til fil (deloppgave E7).");
+                FileWriter skriver = new FileWriter("nyFil.txt");
+                skriver.write("# Pasient (navn, fnr)");
+                for(pasient x : pasienter){
+                    skriver.write(x.navn + "," + x.foedselsnummmer);
+                }
+                skriver.write("# Legemiddel (navn,type,pris,virkestoff,[styrke])");
+                for(Legemiddel x : legemiddelListe){
+                    skriver.write(x.navn + "," + x);
+                }
+                skriver.write("# Leger (navn, kontrollid / 0 hvis vanlig lege)");
+                for(lege x : leger){
+                    skriver.write(x.navn + "," + x.kontrollid);
+                }
+                skriver.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit]");
+                for(Resept x : resept){
+                    skriver.write(x.navn + "," + x.kontrollid);
+                }
             }
 
             ////// Logikken når det er ugyldig input
