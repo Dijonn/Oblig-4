@@ -8,10 +8,14 @@ class Narkotisk extends Legemiddel{
     }
     
     public String toString(){
-        return super.toString() + "Narkotisk styrke:" + this.hentNarkotiskStyrke() + "\n";
+        return super.toString() + "Narkotisk styrke:" + this.hentStyrke() + "\n";
     }
-    public int hentNarkotiskStyrke(){
+    public int hentStyrke(){
         return this.narkotiskStyrke;
+    }
+
+    public String hentType(){
+        return "narkotisk";
     }
 
     public int prisAaBetale(){

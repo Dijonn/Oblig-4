@@ -32,4 +32,6 @@ abstract class Legemiddel{
     public void settNyPris(int pris){
         this.pris = pris;
     }
-}
+
+    abstract public String hentType();
+    abstract public int hentStyrke();}

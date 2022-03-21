@@ -11,4 +11,12 @@ class Vanlig extends Legemiddel{
     public int prisAaBetale(){
         return this.pris;
     }
+
+    public String hentType(){
+        return "vanlig";
+    }
+
+    public int hentStyrke(){
+        return 0;
+    }
 }

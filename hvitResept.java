@@ -11,6 +11,11 @@ class hvitResept extends Resept{
     public String toString(){
         return super.toString();
     }
+
+    public String farge(){
+        return "hvit";
+    }
+
     public int prisAaBetale(){
         return Legemiddel.hentPris();
     }

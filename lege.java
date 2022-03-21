@@ -13,6 +13,10 @@ class lege implements Comparable<lege> {
         return navn;
     }
 
+    public String hentKontrollId(){
+        return "0";
+    }
+
     public int compareTo(lege x){
         return x.hentNavn().compareTo(this.navn);
     }

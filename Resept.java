@@ -44,9 +44,8 @@ abstract class Resept{
         }
         return false;
     }
-    public String farge(){
-        return this.farge;
-    }  
+    abstract public String farge();
+        
     abstract public int prisAaBetale();
 
     public String toString(){
