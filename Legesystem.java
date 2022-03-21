@@ -130,6 +130,19 @@ public class Legesystem {
 
             }
         }
+        for(pasient x: pasienter){
+            System.out.println(x);
+        }
+        for(lege x : leger){
+            System.out.println(x);
+        }
+       
+        for(Legemiddel x : legemiddelListe){
+            System.out.println(x);
+        }
+        for(Resept x: resept){
+            System.out.println(x);
+        }
 
         leser.close();
 
