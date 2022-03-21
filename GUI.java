@@ -582,15 +582,39 @@ public class GUI extends Legesystem{
                 }
                 skriver.write("# Legemiddel (navn,type,pris,virkestoff,[styrke])");
                 for(Legemiddel x : legemiddelListe){
-                    skriver.write(x.navn + "," + x);
+                    if(x instanceof Narkotisk){
+                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff + "," + x.hentNarkotiskStyrke());
+                    }
+                    else if(x instanceof Vanedannende){
+                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff + "," + x.hentVaneStyrke());
+                    }
+                    else{
+                        skriver.write(x.navn + "," + x.hentType() + "," + x.pris + "," + x.virkestoff);
+                    }
                 }
                 skriver.write("# Leger (navn, kontrollid / 0 hvis vanlig lege)");
                 for(lege x : leger){
-                    skriver.write(x.navn + "," + x.kontrollid);
+                    if(x instanceof spesialist){
+                        skriver.write(x.navn + "," + x.kontrollid);
+                    }
+                    else{
+                        skriver.write(x.navn + "," + 0);
+                    }
                 }
                 skriver.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit]");
                 for(Resept x : resept){
-                    skriver.write(x.navn + "," + x.kontrollid);
+                    if(x instanceof blaaResept){
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge + "," + x.reit);
+                    }
+                    else if(x instanceof hvitResept){
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge + "," + x.reit);
+                    }
+                    else if(x instanceof pResept){
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge + "," + x.reit);
+                    }
+                    else{
+                        skriver.write(x.Legemiddel.hentId() + "," + x.ansvarligLege + "," + x.pasient.id + "," + x.farge);
+                    }
                 }
             }
 

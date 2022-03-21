@@ -16,4 +16,8 @@ class Vanedannende extends Legemiddel{
     public int prisAaBetale(){
         return this.pris;
     }
+
+    public String hentType(){
+        return "vanedannende";
+    }
 }

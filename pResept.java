@@ -9,6 +9,10 @@ class pResept extends hvitResept{
         return super.toString();
     }
 
+    public String farge(){
+        return "p";
+    }
+
     public int prisAaBetale(){
         if(Legemiddel.hentPris() -108 > 0){
             this.Pris =Legemiddel.hentPris() -108;

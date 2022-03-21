@@ -9,6 +9,10 @@ class blaaResept extends Resept{
         return super.toString();
     }
 
+    public String farge(){
+        return "blaa";
+    }
+
     public int prisAaBetale(){
         int pris = Legemiddel.hentPris();
         int prisRabatt = (int) (Math.ceil(pris/4));

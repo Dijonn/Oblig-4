@@ -9,6 +9,10 @@ class MilitaerResept extends hvitResept{
         return super.toString();
     }
 
+    public String farge(){
+        return "militaer";
+    }
+
     public int prisAaBetale(){
         return 0;
     }
