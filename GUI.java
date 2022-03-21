@@ -61,7 +61,7 @@ public class GUI extends Legesystem {
             }
 
             if(harNarkotiskResept){
-                System.out.println(x.navn + " antall narkotiske resepter: " + antallNarkotiskeResepter);
+                System.out.println("\n" + x.navn + " antall narkotiske resepter: " + antallNarkotiskeResepter);
             }
 
         }
@@ -70,16 +70,20 @@ public class GUI extends Legesystem {
     //Metode som skriver ut pasiener som har narkotisk resept, og hvor mange de har, ikke komplett. 
     public static void skrivPasienterMedNarkotiskResept(){
 
-        for(lege x: leger){
+        for(pasient p: pasienter){
 
-            Lenkeliste<Resept> reseptListe = x.hentResepter();
             int antallNarkotiskeResepter = 0;
             boolean harNarkotiskResept = false;
 
-            for(Resept y: reseptListe){
-                if(y.Legemiddel instanceof Narkotisk){
-                    System.out.println(y.pasient.navn);
+            for(Resept y: resept){
+                
+                if(y.Legemiddel instanceof Narkotisk && y.pasient == p){
+                    harNarkotiskResept = true;
+                    antallNarkotiskeResepter ++;
                 }
+            }
+            if(harNarkotiskResept){
+                System.out.println("\n" + p.navn + " har " + antallNarkotiskeResepter + " narkotiske.");
             }
         }
     }
@@ -162,8 +166,10 @@ public class GUI extends Legesystem {
         
         try {
             test.lesFraFil("legedata.txt");
-        } catch (Exception e) {
-            System.out.println(" ikjje noe som kommer ut her... ");
+        } 
+        
+        catch (Exception e) {
+            System.out.println(" finner ikke fil ");
         }
 
 
@@ -183,7 +189,27 @@ public class GUI extends Legesystem {
             /////// Skriv ut overskrift
             if(svar.toLowerCase().compareTo("s") == 0){
                 
-                System.out.println("Skrive ut en fullstendig oversikt over pasienter, leger, legemidler og resepter (deloppgave E3).");
+                System.out.println("\nSkriver ut total oversikt. \n");
+                
+                System.out.println("Pasienter:\n");
+                for(pasient x: pasienter){
+                    System.out.println(x);
+                }
+
+                System.out.println("Leger:\n");
+                for(lege x : leger){
+                    System.out.println(x);
+                }
+               
+                System.out.println("Legemidler:\n");
+                for(Legemiddel x : legemiddelListe){
+                    System.out.println(x);
+                }
+
+                System.out.println("Resepter:\n");
+                for(Resept x: resept){
+                    System.out.println(x);
+                }
             }
 
             ////// Logikken for å quite interfacet
@@ -408,13 +434,13 @@ public class GUI extends Legesystem {
                     // Lager legemiddel og legger til i liste
                     else if(svar.toLowerCase().compareTo("le") == 0){
 
-                        System.out.print("(N)arkotsik, (V)anlig eller (VD)nedannende: ");
+                        System.out.print("(N)arkotsik, (V)anlig eller (VD)nedannende (Q)uit: ");
                         svar = input.next();
 
                         if(svar.toLowerCase().compareTo("n") == 0){
                             System.out.println("Lager nytt legemiddel");
                             System.out.print("\nNavn: ");
-                            String svarNavn = input.next();
+                            String svarNavn = input.nextLine();   // var next her tidligere ()
                             System.out.print("\nPris: ");
                             int svarPris = input.nextInt();
                             System.out.print("\nVirkestoff: ");
@@ -428,19 +454,20 @@ public class GUI extends Legesystem {
                         else if(svar.toLowerCase().compareTo("v") == 0){
                             
                             System.out.print("\nNavn: ");
-                            String svarNavn = input.next();
+                            String svarNavn = input.nextLine();
                             System.out.print("\nPris: ");
                             int svarPris = input.nextInt();
                             System.out.print("\nVirkestoff: ");
                             double svarVirkestoff = input.nextDouble();
                             Vanlig nyVan = new Vanlig(svarNavn, svarPris, svarVirkestoff);
                             legemiddelListe.leggTil(nyVan);
+
                         }
 
                         else if(svar.toLowerCase().compareTo("vd") == 0){
                             
                             System.out.print("\nNavn: ");
-                            String svarNavn = input.next();
+                            String svarNavn = input.nextLine();
                             System.out.print("\nPris: ");
                             int svarPris = input.nextInt();
                             System.out.print("\nVirkestoff: ");
@@ -451,7 +478,7 @@ public class GUI extends Legesystem {
                             legemiddelListe.leggTil(nyVaneD);
                         }
 
-                            else{System.out.println("Ugyldig"); break;}
+                        else{System.out.println("Ugyldig"); break;}
                         }
 
                     // quiter ut av submenyen og går til hovedmenyen

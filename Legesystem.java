@@ -75,7 +75,8 @@ public class Legesystem {
 
                     if(deler[3].compareTo("hvit") == 0 ){
                         try{
-                            storLege.skrivHvitResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                            Resept r = storLege.skrivHvitResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                            resept.leggTil(r);
                         }
                         
                         catch (Exception UlovligUtskrift){
@@ -86,7 +87,8 @@ public class Legesystem {
                     else if(deler[3].compareTo("blaa") == 0 ){
                         
                         try{
-                            storLege.skrivBlaaResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                            Resept r = storLege.skrivBlaaResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                            resept.leggTil(r);
                         }
                         
                         catch (Exception UlovligUtskrift){
@@ -97,7 +99,8 @@ public class Legesystem {
 
                     else if(deler[3].compareTo("militaer") == 0 ){
                         try{
-                            storLege.skrivMilResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
+                            Resept r = storLege.skrivMilResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1));
+                            resept.leggTil(r);
                         }
                         
                         catch (Exception UlovligUtskrift){
@@ -107,7 +110,8 @@ public class Legesystem {
 
                     else if(deler[3].compareTo("p") == 0 ){
                         try{
-                            storLege.skrivPResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                            Resept r = storLege.skrivPResept(legemiddelListe.hent(Integer.parseInt(deler[0])-1), pasienter.hent(Integer.parseInt(deler[2])-1), Integer.parseInt(deler[4]));
+                            resept.leggTil(r);
                         }
                         
                         catch (Exception UlovligUtskrift){
@@ -129,19 +133,6 @@ public class Legesystem {
                 }
 
             }
-        }
-        for(pasient x: pasienter){
-            System.out.println(x);
-        }
-        for(lege x : leger){
-            System.out.println(x);
-        }
-       
-        for(Legemiddel x : legemiddelListe){
-            System.out.println(x);
-        }
-        for(Resept x: resept){
-            System.out.println(x);
         }
 
         leser.close();
