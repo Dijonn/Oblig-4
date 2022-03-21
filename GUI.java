@@ -81,6 +81,14 @@ public class GUI extends Legesystem{
                     System.out.println(y.pasient.navn);
                 }
             }
+            for(pasienter p: pasienter){
+            antallForDennePasient = 0;
+            for(resept x : resepter)
+                if(x.pasient instanceof p && Narkotisk){
+                    antallForDennePasient++
+                }
+            leggtiliList
+            }
         }
     }
     
