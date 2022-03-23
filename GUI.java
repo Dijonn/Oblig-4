@@ -694,5 +694,3 @@ public class GUI extends Legesystem{
         
     }   
 }
-
-
